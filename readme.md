@@ -15,6 +15,8 @@
 - Describe at least 5 more use cases you have come up with in brief format
 ![](https://github.com/YellowWall/imgs/blob/main/usecase1.PNG)
 ![](https://github.com/YellowWall/imgs/blob/main/usecase2.PNG)
+Fully dressed use cases:
+- User creation and log-in
 
 ## 3. Project Plan
 - List out what use cases will be completed in each of the upcoming phases
