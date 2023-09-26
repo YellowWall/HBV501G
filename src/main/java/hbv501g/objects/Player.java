@@ -1,6 +1,6 @@
 package hbv501g.objects;
 
-public class User{
+public class Player{
     String userMame;
     String password = null;
     boolean admin = false;
