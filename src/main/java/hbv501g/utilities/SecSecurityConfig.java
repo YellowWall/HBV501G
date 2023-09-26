@@ -4,12 +4,7 @@ public class SecSecurityConfig {
 
     @Bean
     public InMemoryUserDetailsManager userDetailsService() {
-        // InMemoryUserDetailsManager (see below)
-    }
-
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-                UserDetails user1 = User.withUsername("user1")
+        UserDetails user1 = User.withUsername("user1")
             .password(passwordEncoder().encode("user1Pass"))
             .roles("USER")
             .build();
