@@ -1,3 +1,5 @@
+package hbv501g.folf;
+
 @Controller
 public class LoginController {
     @GetMapping("../XMLFiles/login")
