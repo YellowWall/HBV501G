@@ -1,5 +1,8 @@
 package hbv501g.objects;
-public Game{
+
+import java.util.Date;
+
+public class Game{
     long id;
     long fieldId;
     long playerId;

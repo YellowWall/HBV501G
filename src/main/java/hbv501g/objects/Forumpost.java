@@ -1,6 +1,6 @@
 package hbv501g.objects;
 
-public Forumpost{
+public class Forumpost{
     long id;
     long playerId;
     long parentPostId;

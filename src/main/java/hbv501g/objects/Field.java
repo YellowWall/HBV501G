@@ -1,5 +1,5 @@
 package hbv501g.objects;
-public Field{
+public class Field{
     long id;
     String name;
     String par;

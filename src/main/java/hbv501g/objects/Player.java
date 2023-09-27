@@ -1,15 +1,15 @@
 package hbv501g.objects;
 
 public class Player{
-    String userMame;
+    String userName;
     String password = null;
     boolean admin = false;
     int userId;
 
-    public User(String username){
+    public Player(String username){
         this.userName = username; 
     }
-    public setId(int userid){
+    public void setId(int userid){
         this.userId = userid;
     }
 
