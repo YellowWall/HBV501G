@@ -1,4 +1,4 @@
-package hbv501g.folf;
+package hbv501g.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
