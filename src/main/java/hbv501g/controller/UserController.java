@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class UserController {
-    @GetMapping("../XMLFiles/login")
+    @GetMapping("/")
     public String showForm(){
         return "placeholder";
     }
