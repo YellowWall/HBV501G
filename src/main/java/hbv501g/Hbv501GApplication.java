@@ -1,4 +1,4 @@
-package hbv501g.folf;
+package hbv501g;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
