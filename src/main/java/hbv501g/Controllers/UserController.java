@@ -15,7 +15,7 @@ public class UserController {
 
     @GetMapping("/")
     public User getUser(){
-        return new User("ivara", "asdf1234", "Ívar Árnason");
+        return new User("ivara", "asdf1234", "xxxx","Ívar Árnason");
     }
 
     @PostMapping("/signup")

@@ -11,13 +11,15 @@ public class User {
     private long id;
     private String username;
     private String password;
+    private String salt;
     private String name;
 
     public User() {}
 
-    public User(String username, String password, String name) {
+    public User(String username, String password, String salt, String name) {
         this.username = username;
         this.password = password;
+        this.salt = salt;
         this.name = name;
     }
 
@@ -37,6 +39,14 @@ public class User {
         this.password = password;
     }
 
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+
     public String getName() {
         return name;
     }
@@ -47,6 +57,7 @@ public class User {
 
     @Override
     public String toString() {
-        return String.format("name: %s, username: %s, password: %s", this.name, this.username, this.password);
+        String format = "name: %s, username: %s, password: %s, salt: %s";
+        return String.format(format, this.name, this.username, this.password, this.salt);
     }
 }
