@@ -27,4 +27,24 @@ public class UserService {
 
         return newUser;
     }
+
+    public User authenticateUser(String username, String password) {
+        User user = userRepository.findByUsername(username);
+
+        if (user == null) {
+            return null;
+        }
+
+        String hashed = PasswordUtils.hashPassword(password, user.getSalt());
+
+        if (!hashed.equals(user.getPassword())) {
+            return null;
+        }
+
+        // remove sensitive data before returning it to the user.
+        user.setSalt("");
+        user.setPassword("");
+
+        return user;
+    }
 }
