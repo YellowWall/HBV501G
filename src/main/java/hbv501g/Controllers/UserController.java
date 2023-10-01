@@ -24,20 +24,20 @@ public class UserController {
         User newUser = userService.createUser(user);
 
         if (newUser == null) {
-             return new JsonResponse<User>(204, "Could not create user!", null);
+             return new JsonResponse<User>(false, "Could not create user!", null);
         }
 
-        return new JsonResponse<User>(201, "User created", newUser);
+        return new JsonResponse<User>(true, "User created", newUser);
     }
 
     @PostMapping("/login")
     public JsonResponse<String> loginUser(@RequestBody UserPassCreds creds) {
-        User user = userService.authenticateUser(creds.getUsername(), creds.getPassword());
+        String jwtToken = userService.authenticateUser(creds.getUsername(), creds.getPassword());
 
-        if (user == null) {
-            return new JsonResponse<String>(401, "Not Authenticated!", "");
+        if (jwtToken == null) {
+            return new JsonResponse<String>(false, "Not Authenticated!", "");
         }
 
-        return new JsonResponse<String>(200, "Authenticated", user.toString());
+        return new JsonResponse<String>(true, "Authenticated", jwtToken);
     }
 }

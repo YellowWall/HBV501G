@@ -1,22 +1,22 @@
 package hbv501g.Classes;
 
 public class JsonResponse<T> {
-    public int status;
+    public boolean success;
     public String message;
     public T data;
 
-    public JsonResponse(int status, String message, T data) {
-        this.status = status;
+    public JsonResponse(boolean success, String message, T data) {
+        this.success = success;
         this.message = message;
         this.data = data;
     }
 
-    public int getStatus() {
-        return status;
+    public boolean getSuccess() {
+        return success;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
+    public void setSuccess(boolean success) {
+        this.success = success;
     }
 
     public String getMessage() {

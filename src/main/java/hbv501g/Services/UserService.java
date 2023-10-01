@@ -2,6 +2,7 @@ package hbv501g.Services;
 
 import hbv501g.Persistence.Entities.User;
 import hbv501g.Persistence.Repositories.UserRepository;
+import hbv501g.Utils.JwtUtils;
 import hbv501g.Utils.PasswordUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,6 +11,9 @@ import org.springframework.stereotype.Service;
 public class UserService {
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private JwtUtils jwtUtils;
 
     public User createUser(User user) {
         User newUser = userRepository.findByUsername(user.getUsername());
@@ -28,7 +32,7 @@ public class UserService {
         return newUser;
     }
 
-    public User authenticateUser(String username, String password) {
+    public String authenticateUser(String username, String password) {
         User user = userRepository.findByUsername(username);
 
         if (user == null) {
@@ -45,6 +49,6 @@ public class UserService {
         user.setSalt("");
         user.setPassword("");
 
-        return user;
+        return jwtUtils.createToken(user);
     }
 }
