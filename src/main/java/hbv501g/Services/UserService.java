@@ -4,6 +4,11 @@ import hbv501g.Persistence.Entities.User;
 import hbv501g.Persistence.Repositories.UserRepository;
 import hbv501g.Utils.JwtUtils;
 import hbv501g.Utils.PasswordUtils;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,13 +41,13 @@ public class UserService {
         User user = userRepository.findByUsername(username);
 
         if (user == null) {
-            return null;
+            return "-no such user";
         }
 
         String hashed = PasswordUtils.hashPassword(password, user.getSalt());
 
         if (!hashed.equals(user.getPassword())) {
-            return null;
+            return "-wrong password";
         }
 
         // remove sensitive data before returning it to the user.
@@ -50,5 +55,13 @@ public class UserService {
         user.setPassword("");
 
         return jwtUtils.createToken(user);
+    }
+    public List<String> getAllUsernames(){
+        Iterable<User> allusers = userRepository.findAll();
+        List<String> retList = new ArrayList<>();
+        for (User user : allusers) {
+            retList.add(user.getUsername());
+        }
+        return retList;
     }
 }

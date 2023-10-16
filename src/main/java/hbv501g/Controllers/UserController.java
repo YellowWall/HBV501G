@@ -4,6 +4,10 @@ import hbv501g.Classes.JsonResponse;
 import hbv501g.Classes.UserPassCreds;
 import hbv501g.Persistence.Entities.User;
 import hbv501g.Services.UserService;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,10 +38,19 @@ public class UserController {
     public JsonResponse<String> loginUser(@RequestBody UserPassCreds creds) {
         String jwtToken = userService.authenticateUser(creds.getUsername(), creds.getPassword());
 
-        if (jwtToken == null) {
-            return new JsonResponse<String>(false, "Not Authenticated!", "");
+        if (jwtToken.charAt(0) == '-') {
+            return new JsonResponse<String>(false, "Not Authenticated!", jwtToken);
         }
 
         return new JsonResponse<String>(true, "Authenticated", jwtToken);
+    }
+    
+    @GetMapping("/users")
+    public JsonResponse<String> allUsers(){
+        List<String> list = userService.getAllUsernames();
+        if(list == null){
+            return new JsonResponse<String>(false, "no names", null);
+                }
+        return new JsonResponse<String>(true, "all usernames", list.toString());
     }
 }
