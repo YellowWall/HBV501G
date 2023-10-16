@@ -3,9 +3,9 @@ package hbv501g.Services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import hbv501g.Persistence.Entities.Game;
 import hbv501g.Persistence.Entities.User;
 import hbv501g.Persistence.Repositories.GameRepository;
-import hbv501g.objects.Game;
 
 
 @Service

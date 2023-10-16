@@ -51,4 +51,14 @@ public class UserService {
 
         return jwtUtils.createToken(user);
     }
+    public User getUser(String username){
+        User user = userRepository.findByUsername(username);
+        if(user == null){
+            return null;
+        }
+        user.setSalt("");
+        user.setPassword("");
+        return user;
+
+    }
 }

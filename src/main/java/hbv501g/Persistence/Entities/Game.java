@@ -1,8 +1,16 @@
-package hbv501g.objects;
+package hbv501g.Persistence.Entities;
+
+import jakarta.persistence.*;
+
 
 import java.util.Date;
 
+@Entity
+@Table(name = "game", schema = "public")
 public class Game{
+    @Id
+    @GeneratedValue(generator = "game_generator", strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "game_generator", sequenceName = "game_id_seq", allocationSize = 1)
     private long id;
     private long fieldId;
     private long playerId;
