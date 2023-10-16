@@ -5,7 +5,6 @@ import hbv501g.Classes.UserPassCreds;
 import hbv501g.Persistence.Entities.User;
 import hbv501g.Services.UserService;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
