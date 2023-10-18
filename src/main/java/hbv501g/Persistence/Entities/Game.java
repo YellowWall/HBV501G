@@ -9,17 +9,20 @@ import java.util.Date;
 @Table(name = "game", schema = "public")
 public class Game{
     @Id
-    @GeneratedValue(generator = "game_generator", strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name = "game_generator", sequenceName = "game_id_seq", allocationSize = 1)
+    @GeneratedValue(generator = "game_generator",strategy = GenerationType.IDENTITY)
     private long id;
     private long fieldId;
     private long playerId;
     private Date date;
     private String score;
 
-    public Game(Long playerId, Long fieldId){
+    public Game(){}
+
+    public Game(Long playerId, Long fieldId, Date date,String score){
         this.playerId = playerId;
         this.fieldId = fieldId;
+        this.date = date;
+        this.score = score;
     }
 
     public void setDate(Date date) {
@@ -48,5 +51,10 @@ public class Game{
 
     public String getScore() {
         return score;
+    }
+    @Override
+    public String toString(){
+        String format = "fieldId: %l, playerId: %l, Score: %s";
+        return String.format(format,this.fieldId,this.playerId,this.score);
     }
 }

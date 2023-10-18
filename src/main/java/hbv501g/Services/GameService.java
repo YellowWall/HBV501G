@@ -1,5 +1,7 @@
 package hbv501g.Services;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +17,7 @@ public class GameService {
 
     public Game createGame(User firstUser, Long fieldID){
         //bætum við prófun fyrir tilvist field eftir að field hefur verið útfært
-        Game newGame = new Game(firstUser.getId(), fieldID);
+        Game newGame = new Game(firstUser.getId(),fieldID,new Date(),"");
         newGame = gameRepository.save(newGame);
         return newGame;
     };
