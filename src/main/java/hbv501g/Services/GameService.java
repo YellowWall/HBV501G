@@ -18,6 +18,7 @@ public class GameService {
     public Game createGame(User firstUser, Long fieldID){
         //bætum við prófun fyrir tilvist field eftir að field hefur verið útfært
         Game newGame = new Game(firstUser.getId(),fieldID,new Date(),"");
+        System.out.println(newGame.toString());
         newGame = gameRepository.save(newGame);
         return newGame;
     };
