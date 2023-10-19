@@ -23,6 +23,10 @@ public class User {
         this.name = name;
     }
 
+    public long getId(){
+        return id;
+    }
+
     public String getUsername() {
         return username;
     }
