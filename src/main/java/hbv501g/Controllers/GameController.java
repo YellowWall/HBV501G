@@ -1,6 +1,7 @@
 package hbv501g.Controllers;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,12 +30,33 @@ public class GameController {
     @Autowired
     private UserService uService;
     
+    /**
+     * skilar game hlut fyrir id leiks
+     * @param game
+     * @return
+     */
     @GetMapping("/")
-    public JsonResponse<String> getGame(){
-        return new JsonResponse<String>(true, "new string, coming through", null);
+    public JsonResponse<String> getGame(@RequestBody Game game){
+        return new JsonResponse<String>(false, "aðferð ekki útfærð", null);
+        //útfæra
+    }
+    
+    /**
+     * skilar öllum leikjum sem ákveðin spilari hefur skráð á ákveðnum velli
+     * @param query GameInput hlutur sem inniheldur notandanafn og fieldId
+     * @return  jsonresponse með lista af leikjum sem spilari hefur spilað á ákveðnum velli
+     */
+    @GetMapping("/fieldPlayer")
+    public JsonResponse<List<Game>> getGamesForFieldAndPlayer(@RequestBody GameInput query){
+        return new JsonResponse<List<Game>>(false, "aðferð ekki útfærð", null);
     }
 
 
+    /**
+     * skapar nýjan leik
+     * @param gameInput stofnspilari leiks og völlur þar sem leikurinn mun vera leikinn
+     * @return jsonresponse með nýja Game hlutinn sem var skapaður
+     */
     @PostMapping("/")
     public JsonResponse<Game> postGame(@RequestBody GameInput gameInput){
         User thisUser = uService.getUser(gameInput.getUsername());
@@ -54,6 +76,11 @@ public class GameController {
         return new JsonResponse<Hole>(false, newString, null);
     }
 
+    /**
+     * skilar öllum leikjum sem spilari hefur skráð
+     * @param user spilari sem leitað er fyrir
+     * @return allir leikir sem hann hefur skráð
+     */
     @GetMapping("/playerGames")
     public JsonResponse<List<Game>> getUserGames(@RequestBody User user){
         List<Game> retgames = gameService.findByUserGame(user);

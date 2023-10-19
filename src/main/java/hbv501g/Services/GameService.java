@@ -38,8 +38,22 @@ public class GameService {
         }
         return retgame.get();
     }
+    /**
+     * skilar öllum leikjum ákveðins spilara
+     * @param user spilari sem leitað er að leikjum fyrir
+     * @return allir leikir spilara
+     */
     public List<Game> findByUserGame(User user){
         List<Game> retgame = gameRepository.findByPlayerId(user.getId());
         return retgame;
+    }
+    public boolean deleteGame(Game game){
+        gameRepository.delete(game);
+        var check = gameRepository.findById(game.getId());
+        if(check.get() == null){
+            return true;
+        }
+        return false;
+
     }
 }
