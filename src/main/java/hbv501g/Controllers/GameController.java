@@ -11,13 +11,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import hbv501g.Classes.JsonResponse;
+import hbv501g.Persistence.Entities.Hole;
 import hbv501g.Persistence.Entities.Game;
 import hbv501g.Persistence.Entities.User;
 import hbv501g.Services.GameService;
 import hbv501g.Services.HoleService;
 import hbv501g.Services.UserService;
 import hbv501g.objects.GameInput;
-import hbv501g.objects.Hole;
+
 
 @RestController
 @RequestMapping("/game")
