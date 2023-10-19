@@ -1,5 +1,7 @@
 package hbv501g.Controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +17,7 @@ import hbv501g.Services.GameService;
 import hbv501g.Services.HoleService;
 import hbv501g.Services.UserService;
 import hbv501g.objects.GameInput;
+import hbv501g.objects.Hole;
 
 @RestController
 @RequestMapping("/game")
@@ -43,6 +46,20 @@ public class GameController {
         };
         return new JsonResponse<Game>(true, "game made", newgGame);
 
+    }
+
+    @PostMapping("/hole")
+    public JsonResponse<Hole> postHole(@RequestBody String newString, int newInt){
+        return new JsonResponse<Hole>(false, newString, null);
+    }
+
+    @GetMapping("/playerGames")
+    public JsonResponse<List<Game>> getUserGames(@RequestBody User user){
+        List<Game> retgames = gameService.findByUserGame(user);
+        if(retgames != null){
+            return new JsonResponse<List<Game>>(true, "User games returned", retgames);
+        };
+        return new JsonResponse<List<Game>>(false, "games not found for provided user", null);
     }
     
 }

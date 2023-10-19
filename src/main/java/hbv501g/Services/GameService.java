@@ -1,6 +1,7 @@
 package hbv501g.Services;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,4 +23,23 @@ public class GameService {
         newGame = gameRepository.save(newGame);
         return newGame;
     };
+
+    public Game updateGame(Game game){
+        if(game != null && game.getId() != 0){
+            return gameRepository.save(game);
+        }
+        return null;
+    };
+
+    public Game findByIdGame(long id){
+        var retgame = gameRepository.findById(id);
+        if(retgame.get() == null){
+            return null;
+        }
+        return retgame.get();
+    }
+    public List<Game> findByUserGame(User user){
+        List<Game> retgame = gameRepository.findByPlayerId(user.getId());
+        return retgame;
+    }
 }
