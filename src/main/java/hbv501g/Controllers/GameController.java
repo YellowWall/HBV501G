@@ -24,7 +24,7 @@ import hbv501g.objects.Hole;
 public class GameController {
     @Autowired
     private GameService gameService;
-    //private HoleService holeService;
+    private HoleService holeService;
     @Autowired
     private UserService uService;
     
