@@ -47,6 +47,16 @@ public class GameService {
         List<Game> retgame = gameRepository.findByPlayerId(user.getId());
         return retgame;
     }
+
+    /**
+     * skilar öllum leikjum ákveðins spilara
+     * @param userID ID tala spilara sem leitað er að leikjum fyrir
+     * @return allir leikir spilara
+     */
+    public List<Game> findByUserGame(Long userID){
+        List<Game> retgame = gameRepository.findByPlayerId(userID);
+        return retgame;
+    }
     
     public boolean deleteGame(Game game){
         gameRepository.delete(game);

@@ -27,6 +27,7 @@ import hbv501g.objects.GameInput;
 public class GameController {
     @Autowired
     private GameService gameService;
+    @Autowired
     private HoleService holeService;
     @Autowired
     private UserService uService;
@@ -51,8 +52,12 @@ public class GameController {
     public JsonResponse<List<Game>> getGamesForFieldAndPlayer(@RequestBody GameInput query){
         Long field = query.getFieldId();
         String userName = query.getUsername();
-
-        return new JsonResponse<List<Game>>(false, "aðferð ekki útfærð", null);
+        User user = uService.getUser(userName);
+        List<Game> games = gameService.findByUserGame(user);
+        if (games != null) {
+            return new JsonResponse<List<Game>>(false, "Games found", games);
+        }
+        return new JsonResponse<List<Game>>(false, "Games not found", null);
     }
 
 
