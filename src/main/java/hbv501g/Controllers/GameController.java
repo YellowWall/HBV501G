@@ -1,5 +1,6 @@
 package hbv501g.Controllers;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -80,9 +81,19 @@ public class GameController {
 
     }
 
+    /**
+     * Vistar holu í leik
+     * @param hole holan sem á að vista, hver leikur inniheldur margar spilaðar holur.
+     * @return jsonresponse með vistuðu holunni ef það gekk að vista hana
+     */
     @PostMapping("/hole")
-    public JsonResponse<Hole> postHole(@RequestBody String newString, int newInt){
-        return new JsonResponse<Hole>(false, newString, null);
+    public JsonResponse<Hole> postHole(@RequestBody Hole hole){
+        Hole retHole = holeService.saveHole(hole);
+        if (retHole == null){
+            return new JsonResponse<Hole>(false, "something went wrong", null);
+
+        }
+        return new JsonResponse<Hole>(true, "Hole saved", retHole);
     }
 
     /**
@@ -93,10 +104,10 @@ public class GameController {
     @GetMapping("/playerGames")
     public JsonResponse<List<Game>> getUserGames(@RequestBody User user){
         List<Game> retgames = gameService.findByUserGame(user);
-        if(retgames != null){
-            return new JsonResponse<List<Game>>(true, "User games returned", retgames);
+        if(retgames.size() != 0){
+            return new JsonResponse<>(true, "User games returned", retgames);
         };
-        return new JsonResponse<List<Game>>(false, "games not found for provided user", null);
+        return new JsonResponse<>(false, "no games found for provided user", null);
     }
 
     @DeleteMapping("/")
