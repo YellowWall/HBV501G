@@ -49,6 +49,9 @@ public class GameController {
      */
     @GetMapping("/fieldPlayer")
     public JsonResponse<List<Game>> getGamesForFieldAndPlayer(@RequestBody GameInput query){
+        Long field = query.getFieldId();
+        String userName = query.getUsername();
+
         return new JsonResponse<List<Game>>(false, "aðferð ekki útfærð", null);
     }
 
@@ -94,7 +97,7 @@ public class GameController {
     @DeleteMapping("/")
     public JsonResponse<Boolean> deleteGame(@RequestBody Game game){
         if(game == null){
-            return new JsonResponse<Boolean>(false, "Game object missing or does not contain appropriate parameters", false)
+            return new JsonResponse<Boolean>(false, "Game object missing or does not contain appropriate parameters", false);
         }
         //eyðum öllum holum tengdum við leik, á eftir að útfæra í HoleService
         //testum hvort að öllum holum hafi verið eytt
