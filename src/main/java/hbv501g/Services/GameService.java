@@ -47,6 +47,7 @@ public class GameService {
         List<Game> retgame = gameRepository.findByPlayerId(user.getId());
         return retgame;
     }
+    
     public boolean deleteGame(Game game){
         gameRepository.delete(game);
         var check = gameRepository.findById(game.getId());

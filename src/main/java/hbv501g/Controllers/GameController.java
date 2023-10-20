@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -88,6 +89,20 @@ public class GameController {
             return new JsonResponse<List<Game>>(true, "User games returned", retgames);
         };
         return new JsonResponse<List<Game>>(false, "games not found for provided user", null);
+    }
+
+    @DeleteMapping("/")
+    public JsonResponse<Boolean> deleteGame(@RequestBody Game game){
+        if(game == null){
+            return new JsonResponse<Boolean>(false, "Game object missing or does not contain appropriate parameters", false)
+        }
+        //eyðum öllum holum tengdum við leik, á eftir að útfæra í HoleService
+        //testum hvort að öllum holum hafi verið eytt
+        Boolean deleted = gameService.deleteGame(game);
+        if(!deleted){
+            return new JsonResponse<Boolean>(false, "game not deleted", deleted);
+        }
+        return new JsonResponse<Boolean>(true, "game deleted", deleted);
     }
     
 }
