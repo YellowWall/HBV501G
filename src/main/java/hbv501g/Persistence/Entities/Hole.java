@@ -21,9 +21,7 @@ public class Hole{
         this.playerId = playerId;
         this.yeets = score;
     }
-    public void setId(Long id){
-        this.id = id;
-    }
+
     public long getId() {
         return id;
     }
