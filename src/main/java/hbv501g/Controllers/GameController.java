@@ -49,7 +49,7 @@ public class GameController {
         User user = uService.getUser(userName);
         List<Game> games = gameService.findByUserGame(user);
         if (games != null) {
-            return new JsonResponse<List<Game>>(false, "Games found", games);
+            return new JsonResponse<List<Game>>(true, "Games found", games);
         }
         return new JsonResponse<List<Game>>(false, "Games not found", null);
     }
