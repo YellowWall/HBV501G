@@ -81,7 +81,7 @@ public class GameService {
      * @return true ef tókst að eiða leiknum, annars false
      */
     public boolean deleteGame(Game game){
-        gameRepository.delete(game);
+        gameRepository.deleteById(game.getId());
         var check = gameRepository.findById(game.getId());
         if(check.get() == null){
             return true;
