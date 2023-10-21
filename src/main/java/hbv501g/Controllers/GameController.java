@@ -1,17 +1,10 @@
 package hbv501g.Controllers;
 
-import java.util.Date;
+
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import hbv501g.Classes.JsonResponse;
 import hbv501g.Persistence.Entities.Hole;
@@ -97,6 +90,18 @@ public class GameController {
     }
 
     /**
+     * skilar öllum holum fyrir ákveðinn leik
+     */
+    @GetMapping("/gameHoles")
+    public JsonResponse<List<Hole>> getGameHoles(@RequestBody Game game){
+        List<Hole> retHoles = holeService.getGameHoles(game.getId());
+        if(retHoles != null){
+            return new JsonResponse<List<Hole>>(true, "gameHoles returned",retHoles);
+        }
+        return new JsonResponse<List<Hole>>(false, "gameholes not found",null);
+    }
+
+    /**
      * skilar öllum leikjum sem spilari hefur skráð
      * @param user spilari sem leitað er fyrir
      * @return allir leikir sem hann hefur skráð
@@ -116,7 +121,9 @@ public class GameController {
             return new JsonResponse<Boolean>(false, "Game object missing or does not contain appropriate parameters", false);
         }
         //eyðum öllum holum tengdum við leik, á eftir að útfæra í HoleService
+        holeService.deleteGameHoles(game.getId());
         //testum hvort að öllum holum hafi verið eytt
+        
         Boolean deleted = gameService.deleteGame(game);
         if(!deleted){
             return new JsonResponse<Boolean>(false, "game not deleted", deleted);

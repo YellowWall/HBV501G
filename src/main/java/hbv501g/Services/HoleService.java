@@ -21,7 +21,14 @@ public class HoleService {
         return holes;
     }
 
+    public List<Hole> getGameHoles(Long gameId){
+        List<Hole> holes = holeRepository.findByGameId(gameId);
+        return holes;
+    }
     public void deleteHole(Hole hole){
         holeRepository.deleteById(hole.getId());
+    }
+    public void deleteGameHoles(Long gameId){
+        holeRepository.deleteByGameId(gameId);
     }
 }
