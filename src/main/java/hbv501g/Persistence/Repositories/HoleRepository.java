@@ -9,7 +9,8 @@ import java.util.List;
 public interface HoleRepository extends JpaRepository<Hole,Long> {
     public List<Hole> findByGameId(long gameId);
     public List<Hole> findByPlayerId(long playerId);
-    public List<Hole> findByPlayerIdandGameId(long playerId,long gameId);
+    //verð að finna út úr findbyplayerandgame
+    //public List<Hole> findByPlayerIdandGameId(long playerId,long gameId);
     public void deleteByGameId(long gameId);
 
 }

@@ -20,5 +20,6 @@ public class FieldController {
     @GetMapping("/")
     public JsonResponse<List<Field>> getAllFields(){
         //sækjum field úr fieldservice og skilum í JsonResponse
+        return new JsonResponse<List<Field>>(false, "aðferð ekki útfærð", null);
     }
 }
