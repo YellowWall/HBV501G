@@ -2,10 +2,8 @@ package hbv501g.Controllers;
 
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import hbv501g.Classes.JsonResponse;
 import hbv501g.Persistence.Entities.Hole;
 import hbv501g.Persistence.Entities.Game;
@@ -31,7 +29,7 @@ public class GameController {
      * @param game
      * @return
      */
-    @GetMapping("/")
+    @GetMapping("/game")
     public JsonResponse<String> getGame(@RequestBody Game game){
         return new JsonResponse<String>(false, "aðferð ekki útfærð", null);
         //útfæra
@@ -60,7 +58,7 @@ public class GameController {
      * @param gameInput stofnspilari leiks og völlur þar sem leikurinn mun vera leikinn
      * @return jsonresponse með nýja Game hlutinn sem var skapaður
      */
-    @PostMapping("/")
+    @PostMapping("/game")
     public JsonResponse<Game> postGame(@RequestBody GameInput gameInput){
         User thisUser = uService.getUser(gameInput.getUsername());
         if(thisUser == null){
@@ -115,7 +113,7 @@ public class GameController {
         return new JsonResponse<>(false, "no games found for provided user", null);
     }
 
-    @DeleteMapping("/")
+    @DeleteMapping("/game")
     public JsonResponse<Boolean> deleteGame(@RequestBody Game game){
         if(game == null){
             return new JsonResponse<Boolean>(false, "Game object missing or does not contain appropriate parameters", false);

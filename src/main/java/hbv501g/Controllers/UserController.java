@@ -20,7 +20,7 @@ public class UserController {
      * @param userName User object containing at least a username
      * @return full User object for appropriate username
      */
-    @GetMapping("/")
+    @GetMapping("/user")
     public User getUser(@RequestBody User userName){
         if(userName == null || userName.getUsername() == null){
             return null;

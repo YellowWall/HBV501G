@@ -3,9 +3,7 @@ package hbv501g.Services;
 import hbv501g.Persistence.Repositories.HoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import hbv501g.Persistence.Entities.Hole;
-
 import java.util.List;
 
 @Service
