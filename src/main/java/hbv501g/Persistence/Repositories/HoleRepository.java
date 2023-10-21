@@ -12,5 +12,6 @@ public interface HoleRepository extends JpaRepository<Hole,Long> {
     //verð að finna út úr findbyplayerandgame
     //public List<Hole> findByPlayerIdandGameId(long playerId,long gameId);
     public void deleteByGameId(long gameId);
+    //public void deleteByGameID(List<long> gameId);
 
 }
