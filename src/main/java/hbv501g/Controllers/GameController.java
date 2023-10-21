@@ -117,11 +117,12 @@ public class GameController {
 
     @DeleteMapping("/")
     public JsonResponse<Boolean> deleteGame(@RequestBody Game game){
-        if(game == null){
+        if(game == null||gameService.findByIdGame(game.getId())==null){
             return new JsonResponse<Boolean>(false, "Game object missing or does not contain appropriate parameters", false);
         }
         //eyðum öllum holum tengdum við leik, á eftir að útfæra í HoleService
-        holeService.deleteGameHoles(game.getId());
+        Long gameId = game.getId();
+        holeService.deleteGameHoles(gameId);
         //testum hvort að öllum holum hafi verið eytt
         
         Boolean deleted = gameService.deleteGame(game);

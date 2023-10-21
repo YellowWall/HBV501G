@@ -59,7 +59,7 @@ public class GameService {
     }
     
     public boolean deleteGame(Game game){
-        gameRepository.delete(game);
+        gameRepository.deleteById(game.getId());
         var check = gameRepository.findById(game.getId());
         if(check.get() == null){
             return true;
