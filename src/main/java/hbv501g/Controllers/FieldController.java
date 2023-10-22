@@ -1,15 +1,14 @@
 package hbv501g.Controllers;
 
-import java.util.List;
-
+import hbv501g.Classes.JsonResponse;
+import hbv501g.Persistence.Entities.Field;
+import hbv501g.Services.FieldService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import hbv501g.Classes.JsonResponse;
-import hbv501g.Persistence.Entities.Field;
-import hbv501g.Services.FieldService;
+import java.util.List;
 
 @RestController
 @RequestMapping("/field")
@@ -32,4 +31,10 @@ public class FieldController {
         String message = String.format(format,fields.size());
         return new JsonResponse<List<Field>>(true, message, fields);
     }
+
+    //setja inn nýjan field
+
+    //sækja upplýsingar um field
+
+    //sækja öll field
 }
