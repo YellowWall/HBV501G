@@ -86,4 +86,16 @@ public class UserService {
 
     }
 
+    /**
+     * Skilar öllum nöfnum notenda
+     * @return listi af nöfnum notenda
+     */
+    public List<String> getAllUsernames() {
+        List<User> users = userRepository.findAll();
+        List<String> names = new ArrayList<>();
+        for (User i : users){
+            names.add(i.getUsername());
+        }
+        return names;
+    }
 }

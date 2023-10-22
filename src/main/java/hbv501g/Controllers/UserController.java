@@ -62,7 +62,11 @@ public class UserController {
 
         return new JsonResponse<String>(true, "Authenticated", jwtToken);
     }
-    
+
+    /**
+     * Skilar nöfnum allra notenda sem finnast
+     * @return JSON object með nöfnum allra sem finnast
+     */
     @GetMapping("/users")
     public JsonResponse<String> allUsers(){
         List<String> list = userService.getAllUsernames();
