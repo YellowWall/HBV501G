@@ -14,12 +14,22 @@ import java.util.List;
 @RequestMapping("/field")
 public class FieldController {
     @Autowired
-    FieldService fieldservice;
+    private FieldService fieldservice;
 
-    @GetMapping("/")
+    /**
+     * Skilar öllum völlum sem eru skráðir
+     * @return Lista yfir velli
+     */
+    @GetMapping("/fields")
     public JsonResponse<List<Field>> getAllFields(){
         //sækjum field úr fieldservice og skilum í JsonResponse
-        return new JsonResponse<List<Field>>(false, "aðferð ekki útfærð", null);
+        List<Field> fields =fieldservice.getFields();
+        if (fields.size() == 1){
+            return new JsonResponse<List<Field>>(true, "1 field found", fields);
+        }
+        String format = "%d fields found";
+        String message = String.format(format,fields.size());
+        return new JsonResponse<List<Field>>(true, message, fields);
     }
 
     //setja inn nýjan field

@@ -5,6 +5,10 @@ import hbv501g.Classes.UserPassCreds;
 import hbv501g.Persistence.Entities.User;
 import hbv501g.Services.UserService;
 
+
+import java.util.List;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +24,7 @@ public class UserController {
      * @param userName User object containing at least a username
      * @return full User object for appropriate username
      */
-    @GetMapping("/")
+    @GetMapping("/user")
     public User getUser(@RequestBody User userName){
         if(userName == null || userName.getUsername() == null){
             return null;
@@ -52,10 +56,23 @@ public class UserController {
     public JsonResponse<String> loginUser(@RequestBody UserPassCreds creds) {
         String jwtToken = userService.authenticateUser(creds.getUsername(), creds.getPassword());
 
-        if (jwtToken == null) {
-            return new JsonResponse<String>(false, "Not Authenticated!", "");
+        if (jwtToken.charAt(0) == '-') {
+            return new JsonResponse<String>(false, "Not Authenticated!", jwtToken);
         }
 
         return new JsonResponse<String>(true, "Authenticated", jwtToken);
+    }
+
+    /**
+     * Skilar nöfnum allra notenda sem finnast
+     * @return JSON object með nöfnum allra sem finnast
+     */
+    @GetMapping("/users")
+    public JsonResponse<String> allUsers(){
+        List<String> list = userService.getAllUsernames();
+        if(list == null){
+            return new JsonResponse<String>(false, "no names", null);
+                }
+        return new JsonResponse<String>(true, "all usernames", list.toString());
     }
 }

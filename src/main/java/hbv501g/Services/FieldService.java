@@ -1,20 +1,19 @@
 package hbv501g.Services;
 
+
+import hbv501g.Persistence.Entities.Field;
 import hbv501g.Persistence.Repositories.FieldRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import hbv501g.Persistence.Entities.Field;
-
 import java.util.List;
+
 @Service
 public class FieldService {
     @Autowired
     private FieldRepository fieldRepository;
 
-    public List<Field> getAllFields(){
-        List<Field> fields = fieldRepository.findAll();
-        return fields;
-    }
+
 
     public Field getFieldName(String name){
         Field field = fieldRepository.findByName(name);
@@ -32,5 +31,12 @@ public class FieldService {
     }
 
 
-
+    /**
+     * Skilar öllum völlum sem finnast
+     * @return Listi af völlum sem finnast
+     */
+    public List<Field> getFields() {
+        List<Field> fields = fieldRepository.findAll();
+        return fields;
+    }
 }
