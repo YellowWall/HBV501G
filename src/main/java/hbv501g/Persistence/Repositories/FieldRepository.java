@@ -6,5 +6,5 @@ import hbv501g.Persistence.Entities.Field;
 
 public interface FieldRepository extends JpaRepository<Field,Long> {
 
-    Field findByFieldname();
+    Field findByName(String name);
 }
