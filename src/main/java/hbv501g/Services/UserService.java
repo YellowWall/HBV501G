@@ -15,6 +15,11 @@ public class UserService {
     @Autowired
     private JwtUtils jwtUtils;
 
+    /**
+     * Function which registers a user to the database if no user with the same username exists
+     * @param user parameters containing username and password, name of user is optional, but will be blank if none provided
+     * @return the created user or null if no user created
+     */
     public User createUser(User user) {
         User newUser = userRepository.findByUsername(user.getUsername());
 
@@ -23,6 +28,8 @@ public class UserService {
         }
 
         String salt = PasswordUtils.generateSalt();
+        //each user has their own private salt for encrytping password to ensure that the cracking of the encryption of one password
+        //does not crack all
         String password = PasswordUtils.hashPassword(user.getPassword(), salt);
         newUser = new User(user.getUsername(), password, salt, user.getName());
 
@@ -31,7 +38,13 @@ public class UserService {
 
         return newUser;
     }
-
+    /**
+     * returns an authentication token showing that user has been succesfully logged in
+     * this token is used for authorization of various actions
+     * @param username 
+     * @param password
+     * @return authentication token
+     */
     public String authenticateUser(String username, String password) {
         User user = userRepository.findByUsername(username);
 
@@ -51,6 +64,12 @@ public class UserService {
 
         return jwtUtils.createToken(user);
     }
+
+    /**
+     * Finds user object by username
+     * @param username user's username
+     * @return user object
+     */
     public User getUser(String username){
         User user = userRepository.findByUsername(username);
         if(user == null){
