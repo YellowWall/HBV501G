@@ -4,47 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="41e5f3be-ec6d-4393-b5ba-7e48ff1c9b79" name="Changes" comment="allUsers og getAllUsernames útfærð til að laga build villu">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/mvnw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/mvnw.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/readme.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/field-schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/sql/field-schema.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/game-schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/sql/game-schema.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/hole-schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/sql/hole-schema.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/user-schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/sql/user-schema.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/hbv501g/Classes/JsonResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/hbv501g/Classes/JsonResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/hbv501g/Classes/JwtAuthFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/hbv501g/Classes/JwtAuthFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/hbv501g/Classes/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/hbv501g/Classes/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/hbv501g/Classes/UserPassCreds.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/hbv501g/Classes/UserPassCreds.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/hbv501g/Controllers/FieldController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/hbv501g/Controllers/FieldController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/hbv501g/Controllers/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/hbv501g/Controllers/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/hbv501g/Controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/hbv501g/Controllers/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/hbv501g/Hbv501GApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/hbv501g/Hbv501GApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/hbv501g/Persistence/Entities/Field.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/hbv501g/Persistence/Entities/Field.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/hbv501g/Persistence/Entities/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/hbv501g/Persistence/Entities/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/hbv501g/Persistence/Entities/Hole.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/hbv501g/Persistence/Entities/Hole.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/hbv501g/Persistence/Entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/hbv501g/Persistence/Entities/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/hbv501g/Persistence/Repositories/FieldRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/hbv501g/Persistence/Repositories/FieldRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/hbv501g/Persistence/Repositories/GameRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/hbv501g/Persistence/Repositories/GameRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/hbv501g/Persistence/Repositories/HoleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/hbv501g/Persistence/Repositories/HoleRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/hbv501g/Persistence/Repositories/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/hbv501g/Persistence/Repositories/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/hbv501g/Services/FieldService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/hbv501g/Services/FieldService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/hbv501g/Services/GameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/hbv501g/Services/GameService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/hbv501g/Services/HoleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/hbv501g/Services/HoleService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/hbv501g/Services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/hbv501g/Services/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/hbv501g/Utils/JwtUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/hbv501g/Utils/JwtUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/hbv501g/Utils/PasswordUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/hbv501g/Utils/PasswordUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/hbv501g/objects/Forumpost.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/hbv501g/objects/Forumpost.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/hbv501g/objects/GameInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/hbv501g/objects/GameInput.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/hbv501g/objects/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/hbv501g/objects/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/jsp/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/jsp/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/hbv501g/folf/Hbv501GApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/test/java/hbv501g/folf/Hbv501GApplicationTests.java" afterDir="false" />
-    </list>
+    <list default="true" id="41e5f3be-ec6d-4393-b5ba-7e48ff1c9b79" name="Changes" comment="bætt við frontend í repoið" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -91,42 +51,49 @@
     </option>
   </component>
   <component name="ProjectId" id="2UyR8U9t98BRPn2cUEvVZOsSbK3" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Tollvunarfraedi HI/Haustonn2023/HBV501G&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;ab75a7bf331ed76cfc3a0efa7a15e006&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "D:/Tollvunarfraedi HI/Haustonn2023/HBV501G",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "spring.configuration.checksum": "ab75a7bf331ed76cfc3a0efa7a15e006",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Tollvunarfraedi HI\Haustonn2023\HBV501G" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Tollvunarfraedi HI\Haustonn2023\HBV501G" />
+      <recent name="D:\Tollvunarfraedi HI\Haustonn2023\HBV501G\Backend" />
     </key>
   </component>
   <component name="RunManager">
@@ -157,7 +124,7 @@
       <workItem from="1697811917010" duration="5735000" />
       <workItem from="1697919340515" duration="3321000" />
       <workItem from="1698005705324" duration="3919000" />
-      <workItem from="1699206822044" duration="330000" />
+      <workItem from="1699206822044" duration="696000" />
     </task>
     <task id="LOCAL-00001" summary="Breyta í maven">
       <created>1693910095206</created>
@@ -271,7 +238,14 @@
       <option name="project" value="LOCAL" />
       <updated>1698007553180</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="bætt við frontend í repoið">
+      <created>1699207509222</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1699207509222</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -301,6 +275,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Breyta í maven" />
     <MESSAGE value="Laga allar villur sem IntelliJ gefur mér" />
     <MESSAGE value="throws er ekki leyfilegt" />
@@ -317,6 +292,7 @@
     <MESSAGE value="JAVAdoc og laga mapping" />
     <MESSAGE value="FieldController og FieldService" />
     <MESSAGE value="allUsers og getAllUsernames útfærð til að laga build villu" />
-    <option name="LAST_COMMIT_MESSAGE" value="allUsers og getAllUsernames útfærð til að laga build villu" />
+    <MESSAGE value="bætt við frontend í repoið" />
+    <option name="LAST_COMMIT_MESSAGE" value="bætt við frontend í repoið" />
   </component>
 </project>
