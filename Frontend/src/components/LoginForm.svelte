@@ -12,7 +12,7 @@
         >
         <input 
         type="text"
-        name="pasword"
+        name="password"
         placeholder="Password"
         >
         <input 
