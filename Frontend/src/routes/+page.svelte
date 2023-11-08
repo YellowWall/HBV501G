@@ -1,2 +1,10 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+    import LoginForm from '../components/LoginForm.svelte';
+</script>
+
+<h1>Welcome to Folf Tracker</h1>
+<h2>Login</h2>
+
+<section>
+    <LoginForm />
+</section>
