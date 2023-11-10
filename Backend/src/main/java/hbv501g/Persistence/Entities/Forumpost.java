@@ -6,6 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import java.util.date;
 
 @Entity
 @Table(name = "forum",schema="public")
@@ -16,6 +17,8 @@ public class Forumpost{
     private long id;
     private long playerId;
     private long parentPostId;
+    private Date postDate;
+    private Date updatePost;
 
     private final String title;
     private String text;
@@ -26,9 +29,6 @@ public class Forumpost{
         this.playerId = playerId;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public void setText(String text){
         this.text = text;
@@ -45,6 +45,9 @@ public class Forumpost{
     public long getParentPostId() {
         return parentPostId;
     }
+    public void setParentPostId(long id){
+        this.parentPostId = id;
+    }
 
     public String getTitle() {
         return title;
@@ -52,5 +55,8 @@ public class Forumpost{
 
     public String getText() {
         return text;
+    }
+    public void update(){
+        this.updatePost = new Date();
     }
 }

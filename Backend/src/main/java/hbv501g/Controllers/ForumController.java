@@ -23,32 +23,57 @@ public class ForumController {
 
     @GetMapping("/top")
     public JsonResponse<List<Forumpost>> getAllParentPosts(){
-        return new JsonResponse<List<Forumpost>>(false, "Not yet Implemented", null);
+        List<Forumpost> threads = forumService.getAllThreads();
+        if(threads != null){
+            return new JsonResponse<List<Forumpost>>(true, "All threads returned", threads);
+        }
+        return new JsonResponse<List<Forumpost>>(false, "No threads found", null);
     };
     @GetMapping("/post")
-    public JsonResponse<List<Forumpost>> getPostAndChildren(){
-        return new JsonResponse<List<Forumpost>>
-        (false, "Not implemented", null);
+    public JsonResponse<List<Forumpost>> getPostAndChildren(@RequestParam string postid){
+        Long id = Long.parseLong(postid);
+        List<Forumpost> thread = forumService.getThread(id);
+        if(thread != null){
+            return new JsonResponse<List<Forumpost>>(
+                true, "thread returned", thread);
+        }
+        return new JsonResponse<List<Forumpost>>(
+            false,"post not found", null);
     }
 
     @PostMapping("/newPost")
     public JsonResponse<Forumpost> postNewThread(@RequestBody Forumpost post){
+        Forumpost nThread = forumService.newThread(post);
+        if(nThread!=null){
+            return new JsonResponse<Forumpost>(
+                true,"posted",nThread
+            );
+        }
         return new JsonResponse<Forumpost>(
-            false,"Not Implemented yet",null);
+            false,"post not posted",null);
     };
     @PostMapping("/replyPost")
     public JsonResponse<Forumpost> postReply(@RequestParam String ppid,@RequestBody Forumpost post){
+        Forumpost reply = forumService.savePost(post);
         return new JsonResponse<Forumpost>(
             false,"Not Implemented",null);
     }
     @PatchMapping("/editPost")
     public JsonResponse<Forumpost> editPost(@RequestBody Forumpost post){
+        Forumpost reply = forumService.savePost(post);
+        if(reply != null){
+            return new JsonResponse<Forumpost>(true,"post edited",reply);
+        }
         return new JsonResponse<Forumpost>(
-            false,"Not Implemented yet",null);
+            false,"Post not edited",null);
     };
     @DeleteMapping("/deletePost")
     public JsonResponse<Forumpost> deletePost(@RequestBody Forumpost post){
+        boolean deleleted = forumService.deletePost(post);
+        if(deleted){
+            return new JsonResponse<Forumpost>(true,"Post Deleted",null);
+        }
         return new JsonResponse<Forumpost>(
-            false, "Not Implemented", null);
+            false, "Post not deleted", null);
     }
 }
