@@ -29,7 +29,7 @@ public class ForumService {
         var parentpost = forumRepository.findById(postid);
         if(parentpost.get()!=null){
             List<Forumpost> retlist = forumRepository.findByParentPostId(postid);
-            retlist.add(parentpost,0);
+            retlist.add(0,parentpost.get());
             return retlist;
         }
         return null;
@@ -45,7 +45,7 @@ public class ForumService {
     }
     public boolean deletePost(Forumpost post){
         forumRepository.delete(post);
-        var test = forumRepository.findById(post);
+        var test = forumRepository.findById(post.getId());
         if(test.get() != null){
             return false;
         }

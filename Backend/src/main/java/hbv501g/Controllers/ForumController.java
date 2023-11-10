@@ -30,7 +30,7 @@ public class ForumController {
         return new JsonResponse<List<Forumpost>>(false, "No threads found", null);
     };
     @GetMapping("/post")
-    public JsonResponse<List<Forumpost>> getPostAndChildren(@RequestParam string postid){
+    public JsonResponse<List<Forumpost>> getPostAndChildren(@RequestParam String postid){
         Long id = Long.parseLong(postid);
         List<Forumpost> thread = forumService.getThread(id);
         if(thread != null){
@@ -69,7 +69,7 @@ public class ForumController {
     };
     @DeleteMapping("/deletePost")
     public JsonResponse<Forumpost> deletePost(@RequestBody Forumpost post){
-        boolean deleleted = forumService.deletePost(post);
+        boolean deleted = forumService.deletePost(post);
         if(deleted){
             return new JsonResponse<Forumpost>(true,"Post Deleted",null);
         }
