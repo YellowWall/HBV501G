@@ -10,6 +10,7 @@ import java.util.List;
 public interface GameRepository extends JpaRepository<Game,Long> {
 
     public List<Game> findByPlayerId(long playerId);
+    public Game findById(long id);
 
     @Transactional
     public void deleteById(long id);

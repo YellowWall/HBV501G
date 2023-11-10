@@ -18,16 +18,11 @@ public class GameService {
 
     /**
      * Býr til nýjan leik á gefnum velli
-     * @param firstUser Sá spilari sem býr til leikinn
-     * @param fieldID Völlurinn sem spilað er á
+     * @param game upplýsingar um leikinn.
      * @return Leikurinn sem verið er að spila
      */
-    public Game createGame(User firstUser, Long fieldID){
-        //bætum við prófun fyrir tilvist field eftir að field hefur verið útfært
-        Game newGame = new Game(firstUser.getId(),fieldID,new Date(),"");
-        System.out.println(newGame.toString());
-        newGame = gameRepository.save(newGame);
-        return newGame;
+    public Game createGame(Game game){
+        return gameRepository.save(game);
     };
 
     /**
@@ -49,11 +44,7 @@ public class GameService {
      */
 
     public Game findByIdGame(long id){
-        var retgame = gameRepository.findById(id);
-        if(retgame.get() == null){
-            return null;
-        }
-        return retgame.get();
+        return gameRepository.findById(id);
     }
     /**
      * skilar öllum leikjum ákveðins spilara
@@ -83,10 +74,6 @@ public class GameService {
     public boolean deleteGame(Game game){
         gameRepository.deleteById(game.getId());
         var check = gameRepository.findById(game.getId());
-        if(check.get() == null){
-            return true;
-        }
-        return false;
-
+        return check == null;
     }
 }

@@ -26,13 +26,18 @@ public class GameController {
     
     /**
      * skilar game hlut fyrir id leiks
-     * @param game
+     * @param id
      * @return
      */
-    @GetMapping("/game")
-    public JsonResponse<String> getGame(@RequestBody Game game){
-        return new JsonResponse<String>(false, "aðferð ekki útfærð", null);
-        //útfæra
+    @GetMapping("/{id}")
+    public JsonResponse<Game> getGame(@PathVariable Long id){
+        Game game = gameService.findByIdGame(id);
+
+        if (game != null) {
+            return new JsonResponse<Game>(true, "Game found", game);
+        }
+
+        return new JsonResponse<Game>(false, "Game not found", null);
     }
     
     /**
@@ -55,20 +60,16 @@ public class GameController {
 
     /**
      * skapar nýjan leik
-     * @param gameInput stofnspilari leiks og völlur þar sem leikurinn mun vera leikinn
+     * @param game stofnspilari leiks og völlur þar sem leikurinn mun vera leikinn
      * @return jsonresponse með nýja Game hlutinn sem var skapaður
      */
-    @PostMapping("/game")
-    public JsonResponse<Game> postGame(@RequestBody GameInput gameInput){
-        User thisUser = uService.getUser(gameInput.getUsername());
-        if(thisUser == null){
-            return new JsonResponse<Game>(false, "no such user", null);
-        };
-        Game newgGame = gameService.createGame(thisUser, gameInput.getFieldId());
-        if(newgGame == null){
+    @PostMapping("/")
+    public JsonResponse<Game> postGame(@RequestBody Game game){
+        Game newGame = gameService.createGame(game);
+        if(newGame == null){
             return new JsonResponse<Game>(false, "game not made", null);
         };
-        return new JsonResponse<Game>(true, "game made", newgGame);
+        return new JsonResponse<Game>(true, "game made", newGame);
 
     }
 
