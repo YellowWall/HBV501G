@@ -4,10 +4,13 @@ public class UserPassCreds {
     private String username;
     private String password;
 
+    public UserPassCreds(){}
     public UserPassCreds(String username, String password) {
         this.username = username;
         this.password = password;
     }
+
+
 
     public String getUsername() {
         return username;
