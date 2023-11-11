@@ -2,6 +2,7 @@
 
 <script>
     import {goto,} from '$app/navigation';
+    //import {browser} from '$app/enviroment'; þarf kanski ekki
     let backendRoute = 'http://localhost:8080/user';
     let password = '';
     let username = '';
@@ -17,8 +18,10 @@
         })}
         )
         const json = await res.json();
-        //console.log(json)
+        console.log(json)
         if (json.success) {
+            window.sessionStorage.setItem('Username',username);
+            window.sessionStorage.setItem('authenticatorTocen',json.data);
             goto('../homepage');
         } else {
             failed = true;
