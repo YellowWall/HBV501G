@@ -15,6 +15,7 @@ import hbv501g.objects.GameInput;
 
 
 @RestController
+@CrossOrigin
 @RequestMapping("/game")
 public class GameController {
     @Autowired
