@@ -15,6 +15,10 @@
 	- `git pull`
 
 ---
+# Til að keyra verkefnið
+- npm run í frontend möppunni
+- keyra Backend/src/main/java/hbv501g/Hbv501GApplication.java
+- opna í browser slóðina sem verður til við mpm run
 ---
 
 # Fystu skil 10. september 2023
