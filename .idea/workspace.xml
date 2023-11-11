@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="41e5f3be-ec6d-4393-b5ba-7e48ff1c9b79" name="Changes" comment="login og signup form">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/hbv501g/Controllers/FieldController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/hbv501g/Controllers/FieldController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/src/main/java/hbv501g/Controllers/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/hbv501g/Controllers/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/hbv501g/Persistence/Entities/Field.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/hbv501g/Persistence/Entities/Field.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +24,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="development" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -133,7 +131,7 @@
       <workItem from="1699210359853" duration="441000" />
       <workItem from="1699559995459" duration="5186000" />
       <workItem from="1699698212367" duration="9888000" />
-      <workItem from="1699737169638" duration="1522000" />
+      <workItem from="1699737169638" duration="2192000" />
     </task>
     <task id="LOCAL-00001" summary="Breyta í maven">
       <created>1693910095206</created>

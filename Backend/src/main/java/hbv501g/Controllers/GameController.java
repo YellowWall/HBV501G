@@ -41,7 +41,7 @@ public class GameController {
      * @param query GameInput hlutur sem inniheldur notandanafn og fieldId
      * @return  jsonresponse með lista af leikjum sem spilari hefur spilað á ákveðnum velli
      */
-    @GetMapping("/fieldPlayer")
+    @PostMapping("/fieldPlayer")
     public JsonResponse<List<Game>> getGamesForFieldAndPlayer(@RequestBody GameInput query){
         Long field = query.getFieldId();
         String userName = query.getUsername();
@@ -91,7 +91,7 @@ public class GameController {
     /**
      * skilar öllum holum fyrir ákveðinn leik
      */
-    @GetMapping("/gameHoles")
+    @PostMapping("/gameHoles")
     public JsonResponse<List<Hole>> getGameHoles(@RequestBody Game game){
         List<Hole> retHoles = holeService.getGameHoles(game.getId());
         if(retHoles != null){
@@ -105,7 +105,7 @@ public class GameController {
      * @param user spilari sem leitað er fyrir
      * @return allir leikir sem hann hefur skráð
      */
-    @GetMapping("/playerGames")
+    @PostMapping("/playerGames")
     public JsonResponse<List<Game>> getUserGames(@RequestBody User user){
         List<Game> retgames = gameService.findByUserGame(user);
         if(retgames.size() != 0){
