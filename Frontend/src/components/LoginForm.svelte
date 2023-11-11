@@ -12,16 +12,21 @@
             backendRoute + '/login',
             {method: 'POST',
             headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({
-            username,
-            password
-        })}
+            body: JSON.stringify({
+                username,
+                password
+                })
+            }
         )
+        //console.log('her er res');
+        //console.log(res);
         const json = await res.json();
-        console.log(json)
+        //console.log('her er json');
+        //console.log(json)
         if (json.success) {
             window.sessionStorage.setItem('Username',username);
             window.sessionStorage.setItem('authenticatorTocen',json.data);
+            //console.log(window.sessionStorage.getItem('Username'))
             goto('../homepage');
         } else {
             failed = true;
