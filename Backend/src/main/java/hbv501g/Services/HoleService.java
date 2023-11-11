@@ -1,5 +1,6 @@
 package hbv501g.Services;
 
+import hbv501g.Persistence.Entities.Game;
 import hbv501g.Persistence.Repositories.HoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,6 +11,11 @@ import java.util.List;
 public class HoleService {
     @Autowired
     private HoleRepository holeRepository;
+
+    public List<Hole> findAll() { return holeRepository.findAll(); }
+    public Hole findById(long id){
+        return holeRepository.findById(id);
+    }
 
     public Hole saveHole(Hole hole){
         return holeRepository.save(hole);
@@ -23,8 +29,8 @@ public class HoleService {
         List<Hole> holes = holeRepository.findByGameId(gameId);
         return holes;
     }
-    public void deleteHole(Hole hole){
-        holeRepository.deleteById(hole.getId());
+    public void deleteHole(long id){
+        holeRepository.deleteById(id);
     }
     public void deleteGameHoles(Long gameId){
         holeRepository.deleteByGameId(gameId);

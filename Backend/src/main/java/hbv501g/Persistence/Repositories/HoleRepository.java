@@ -11,6 +11,9 @@ import java.util.List;
 
 
 public interface HoleRepository extends JpaRepository<Hole,Long> {
+
+    public Hole findById(long id);
+
     public List<Hole> findByGameId(long gameId);
     public List<Hole> findByPlayerId(long playerId);
     //verð að finna út úr findbyplayerandgame

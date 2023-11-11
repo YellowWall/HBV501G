@@ -15,15 +15,29 @@ import hbv501g.objects.GameInput;
 
 
 @RestController
+@CrossOrigin
 @RequestMapping("/game")
 public class GameController {
     @Autowired
     private GameService gameService;
+
     @Autowired
     private HoleService holeService;
+
     @Autowired
     private UserService uService;
-    
+
+    @GetMapping("/")
+    public JsonResponse<List<Game>> getAllGames() {
+        List<Game> games = gameService.findAll();
+
+        if (games != null) {
+            return new JsonResponse<List<Game>>(true, "Games found", games);
+        }
+
+        return new JsonResponse<List<Game>>(false, "Games not found", null);
+    }
+
     /**
      * skilar game hlut fyrir id leiks
      * @param id
@@ -39,24 +53,6 @@ public class GameController {
 
         return new JsonResponse<Game>(false, "Game not found", null);
     }
-    
-    /**
-     * skilar öllum leikjum sem ákveðin spilari hefur skráð á ákveðnum velli
-     * @param query GameInput hlutur sem inniheldur notandanafn og fieldId
-     * @return  jsonresponse með lista af leikjum sem spilari hefur spilað á ákveðnum velli
-     */
-    @GetMapping("/fieldPlayer")
-    public JsonResponse<List<Game>> getGamesForFieldAndPlayer(@RequestBody GameInput query){
-        Long field = query.getFieldId();
-        String userName = query.getUsername();
-        User user = uService.getUser(userName);
-        List<Game> games = gameService.findByUserGame(user);
-        if (games != null) {
-            return new JsonResponse<List<Game>>(true, "Games found", games);
-        }
-        return new JsonResponse<List<Game>>(false, "Games not found", null);
-    }
-
 
     /**
      * skapar nýjan leik
@@ -73,19 +69,37 @@ public class GameController {
 
     }
 
-    /**
-     * Vistar holu í leik
-     * @param hole holan sem á að vista, hver leikur inniheldur margar spilaðar holur.
-     * @return jsonresponse með vistuðu holunni ef það gekk að vista hana
-     */
-    @PostMapping("/hole")
-    public JsonResponse<Hole> postHole(@RequestBody Hole hole){
-        Hole retHole = holeService.saveHole(hole);
-        if (retHole == null){
-            return new JsonResponse<Hole>(false, "something went wrong", null);
-
+    @DeleteMapping("/{id}")
+    public JsonResponse<Boolean> deleteGame(@RequestParam Long id){
+        if(gameService.findByIdGame(id) == null){
+            return new JsonResponse<Boolean>(false, "Game object missing or does not contain appropriate parameters", false);
         }
-        return new JsonResponse<Hole>(true, "Hole saved", retHole);
+        //eyðum öllum holum tengdum við leik, á eftir að útfæra í HoleService
+        holeService.deleteGameHoles(id);
+        //testum hvort að öllum holum hafi verið eytt
+
+        Boolean deleted = gameService.deleteGame(id);
+        if(!deleted){
+            return new JsonResponse<Boolean>(false, "game not deleted", deleted);
+        }
+        return new JsonResponse<Boolean>(true, "game deleted", deleted);
+    }
+
+    /**
+     * skilar öllum leikjum sem ákveðin spilari hefur skráð á ákveðnum velli
+     * @param query GameInput hlutur sem inniheldur notandanafn og fieldId
+     * @return  jsonresponse með lista af leikjum sem spilari hefur spilað á ákveðnum velli
+     */
+    @GetMapping("/fieldPlayer")
+    public JsonResponse<List<Game>> getGamesForFieldAndPlayer(@RequestBody GameInput query){
+        Long field = query.getFieldId();
+        String userName = query.getUsername();
+        User user = uService.getUser(userName);
+        List<Game> games = gameService.findByUserGame(user);
+        if (games != null) {
+            return new JsonResponse<List<Game>>(true, "Games found", games);
+        }
+        return new JsonResponse<List<Game>>(false, "Games not found", null);
     }
 
     /**
@@ -112,23 +126,6 @@ public class GameController {
             return new JsonResponse<>(true, "User games returned", retgames);
         };
         return new JsonResponse<>(false, "no games found for provided user", null);
-    }
-
-    @DeleteMapping("/game")
-    public JsonResponse<Boolean> deleteGame(@RequestBody Game game){
-        if(game == null||gameService.findByIdGame(game.getId())==null){
-            return new JsonResponse<Boolean>(false, "Game object missing or does not contain appropriate parameters", false);
-        }
-        //eyðum öllum holum tengdum við leik, á eftir að útfæra í HoleService
-        Long gameId = game.getId();
-        holeService.deleteGameHoles(gameId);
-        //testum hvort að öllum holum hafi verið eytt
-        
-        Boolean deleted = gameService.deleteGame(game);
-        if(!deleted){
-            return new JsonResponse<Boolean>(false, "game not deleted", deleted);
-        }
-        return new JsonResponse<Boolean>(true, "game deleted", deleted);
     }
     
 }

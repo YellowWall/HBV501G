@@ -37,6 +37,8 @@ public class GameService {
         return null;
     };
 
+    public List<Game> findAll() { return gameRepository.findAll(); }
+
     /**
      * Finnur leik sem hefur tiltekið gameId
      * @param id ID tala leiksins sem leitað er að
@@ -68,12 +70,12 @@ public class GameService {
 
     /**
      * Eyðir þeim leik sem fallið fær
-     * @param game leikurinn sem á að eyða
+     * @param gameId leikurinn sem á að eyða
      * @return true ef tókst að eiða leiknum, annars false
      */
-    public boolean deleteGame(Game game){
-        gameRepository.deleteById(game.getId());
-        var check = gameRepository.findById(game.getId());
+    public boolean deleteGame(Long gameId){
+        gameRepository.deleteById(gameId);
+        var check = gameRepository.findById(gameId);
         return check == null;
     }
 }
