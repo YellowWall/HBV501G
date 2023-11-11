@@ -1,6 +1,7 @@
 
 
 <script>
+    import {goto,} from '$app/navigation';
     let backendRoute = 'http://localhost:8080/user';
     let password = '';
     let username = '';
@@ -18,7 +19,7 @@
         const json = await res.json();
         //console.log(json)
         if (json.success) {
-            
+            goto('../homepage');
         } else {
             failed = true;
         }
