@@ -2,32 +2,28 @@
     let backendRoute = 'http://localhost:8080/user';
     let password = '';
     let username = '';
-    async function loginPost(){
+    let salt = '';
+    let name = '';
+    async function signupPost(){
         const res = await fetch(
-            backendRoute + '/login',
+            backendRoute + '/signup',
             {method: 'POST',
             headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
             username,
-            password
+            password,
+            salt,
+            name
         })}
         )
         const json = await res.json();
-        console.log(json)
+        //console.log(json)
 
         let result = JSON.stringify(json);
-        //console.log(result)
+        console.log(result)
     };
 
-    async function getUsers(){
-        const res = await fetch(
-            backendRoute + '/users',
-            {method: 'GET'} 
-        )
-        const json = await res.json();
-        let result = JSON.stringify(json);
-        //console.log(result);
-    }
+
 </script>
 
 <h1>Welcome to Folf Tracker</h1>
@@ -41,14 +37,22 @@
         placeholder="Name"
         >
         <input 
+        bind:value={name}
+        type="text"
+        name="Display name"
+        placeholder="Display name"
+        >
+        <input 
         bind:value={password}
         type="text"
         name="password"
         placeholder="Password"
         >
         <input 
-        on:click={loginPost}
+        on:click={signupPost}
         type="submit"
         value="Signup">
     </form>
+    <a href="../login">
+    <p>Back to login</p></a>
 </div>

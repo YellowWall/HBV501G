@@ -4,6 +4,7 @@
     let backendRoute = 'http://localhost:8080/user';
     let password = '';
     let username = '';
+    let failed = false;
     async function loginPost(){
         const res = await fetch(
             backendRoute + '/login',
@@ -15,31 +16,28 @@
         })}
         )
         const json = await res.json();
-        console.log(json)
+        //console.log(json)
+        if (json.success) {
+            
+        } else {
+            failed = true;
+        }
 
-        let result = JSON.stringify(json);
-        //console.log(result)
     };
 
-    async function getUsers(){
-        const res = await fetch(
-            backendRoute + '/users',
-            {method: 'GET'} 
-        )
-        const json = await res.json();
-        let result = JSON.stringify(json);
-        //console.log(result);
-    }
 </script>
 <h1>Welcome to Folf Tracker</h1>
 <h2>Login</h2>
+{#if failed}
+    <p>Wrong username or password</p>
+{/if}
 <div class="form">
     <form action="">
         <input 
         bind:value={username}
         type="text"
         name="username"
-        placeholder="Name"
+        placeholder="Username"
         >
         <input 
         bind:value={password}
@@ -52,6 +50,8 @@
         type="submit"
         value="Login">
     </form>
+    <a href="../signup">
+    <p>Signup for Folf tracker</p></a>
 </div>
 
 
