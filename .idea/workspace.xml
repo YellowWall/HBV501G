@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="41e5f3be-ec6d-4393-b5ba-7e48ff1c9b79" name="Changes" comment="bætt við frontend í repoið">
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="41e5f3be-ec6d-4393-b5ba-7e48ff1c9b79" name="Changes" comment="login og signup form" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -129,6 +126,8 @@
       <workItem from="1698005705324" duration="3919000" />
       <workItem from="1699206822044" duration="2177000" />
       <workItem from="1699210359853" duration="441000" />
+      <workItem from="1699559995459" duration="5186000" />
+      <workItem from="1699698212367" duration="9888000" />
     </task>
     <task id="LOCAL-00001" summary="Breyta í maven">
       <created>1693910095206</created>
@@ -256,7 +255,21 @@
       <option name="project" value="LOCAL" />
       <updated>1699207546937</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="login og signup form">
+      <created>1699565059342</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1699565059342</updated>
+    </task>
+    <task id="LOCAL-00020" summary="login og signup form">
+      <created>1699565066721</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1699565066722</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -304,6 +317,7 @@
     <MESSAGE value="FieldController og FieldService" />
     <MESSAGE value="allUsers og getAllUsernames útfærð til að laga build villu" />
     <MESSAGE value="bætt við frontend í repoið" />
-    <option name="LAST_COMMIT_MESSAGE" value="bætt við frontend í repoið" />
+    <MESSAGE value="login og signup form" />
+    <option name="LAST_COMMIT_MESSAGE" value="login og signup form" />
   </component>
 </project>
