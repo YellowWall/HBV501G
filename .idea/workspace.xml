@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="41e5f3be-ec6d-4393-b5ba-7e48ff1c9b79" name="Changes" comment="login og signup form">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/hbv501g/Controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/hbv501g/Controllers/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/LoginForm.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/LoginForm.svelte" afterDir="false" />
-    </list>
+    <list default="true" id="41e5f3be-ec6d-4393-b5ba-7e48ff1c9b79" name="Changes" comment="login og signup form" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -131,7 +127,7 @@
       <workItem from="1699206822044" duration="2177000" />
       <workItem from="1699210359853" duration="441000" />
       <workItem from="1699559995459" duration="5186000" />
-      <workItem from="1699698212367" duration="9424000" />
+      <workItem from="1699698212367" duration="9888000" />
     </task>
     <task id="LOCAL-00001" summary="Breyta í maven">
       <created>1693910095206</created>
