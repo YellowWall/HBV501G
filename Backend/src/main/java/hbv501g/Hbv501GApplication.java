@@ -11,5 +11,3 @@ public class Hbv501GApplication {
 	}
 
 }
-
-// this is team member Daníel Helgi

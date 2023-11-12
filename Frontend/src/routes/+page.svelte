@@ -6,3 +6,5 @@
 <p>Press here to login</p></a>
 <a href="./signup">
 <p>Press here to signup</p></a>
+<a href="./homepage">
+<p>homepage</p></a>
