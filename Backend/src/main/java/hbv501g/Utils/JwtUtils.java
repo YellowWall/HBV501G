@@ -66,6 +66,22 @@ public class JwtUtils {
         return null;
     }
 
+    public boolean validateToken(HttpServletRequest request) {
+        String token = resolveToken(request);
+        try {
+            Jwts.parser().setSigningKey(secret).isSigned(token);
+
+
+            //OK, we can trust this JWT
+
+        } catch (JwtException e) {
+
+            //don't trust the JWT!
+        }
+
+        return true;
+    }
+
     public boolean validateClaims(Claims claims) {
         return claims.getExpiration().after(new Date());
     }
