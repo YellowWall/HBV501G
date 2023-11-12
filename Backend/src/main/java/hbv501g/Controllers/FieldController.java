@@ -4,10 +4,12 @@ import hbv501g.Classes.JsonResponse;
 import hbv501g.Persistence.Entities.Field;
 import hbv501g.Services.FieldService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 
 import java.util.List;
 
@@ -34,9 +36,26 @@ public class FieldController {
         return new JsonResponse<List<Field>>(true, message, fields);
     }
 
-    //setja inn nýjan field
-
+    /**
+     * Vistar völlinn og skilar honum eftir að hann hefur verið vistaður
+     * @param field Völlurinn sem á að vista par er strengur talna fyrir par holana
+     * @return Völlurinn eftir að hann er vistaður
+     */
+    @PostMapping("/postfield")
+    public JsonResponse<Field> postField(@RequestBody Field field){
+        Field savedField = fieldservice.saveField(field);
+        return new JsonResponse<Field>(true, "Field saved", savedField);
+    }
     //sækja upplýsingar um field
 
-    //sækja öll field
+    @PostMapping("/fieldbyname")
+    public JsonResponse<Field> getFieldByName(@RequestBody String name){
+        System.out.println(name);
+        Field returnField = fieldservice.getFieldName(name);
+        if (returnField != null) {
+            return new JsonResponse<>(true, "Field found", returnField);
+        }
+        return new JsonResponse<>(false, "Field not found", null);
+    }
+
 }

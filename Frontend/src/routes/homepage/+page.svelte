@@ -29,8 +29,8 @@
         }
 
         let user =load();
-        console.log("her er user")
-        console.log(user.data);
+        //console.log("her er user")
+        //console.log(user.data);
 </script>
 
 

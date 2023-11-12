@@ -12,6 +12,7 @@ public class Field{
     private String name;
     private String par;
 
+    public Field(){};
     public Field(String name, String par){
         this.name = name;
         this.par = par;
