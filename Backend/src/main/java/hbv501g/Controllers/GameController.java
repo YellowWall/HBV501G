@@ -95,7 +95,7 @@ public class GameController {
         Long field = query.getFieldId();
         String userName = query.getUsername();
         User user = uService.getUser(userName);
-        List<Game> games = gameService.findByUserGame(user);
+        List<Game> games = gameService.findALLByUserId(user);
         if (games != null) {
             return new JsonResponse<List<Game>>(true, "Games found", games);
         }
@@ -107,7 +107,7 @@ public class GameController {
      */
     @GetMapping("/gameHoles")
     public JsonResponse<List<Hole>> getGameHoles(@RequestBody Game game){
-        List<Hole> retHoles = holeService.getGameHoles(game.getId());
+        List<Hole> retHoles = holeService.findAllByGameId(game.getId());
         if(retHoles != null){
             return new JsonResponse<List<Hole>>(true, "gameHoles returned",retHoles);
         }
@@ -121,7 +121,7 @@ public class GameController {
      */
     @GetMapping("/playerGames")
     public JsonResponse<List<Game>> getUserGames(@RequestBody User user){
-        List<Game> retgames = gameService.findByUserGame(user);
+        List<Game> retgames = gameService.findALLByUserId(user);
         if(retgames.size() != 0){
             return new JsonResponse<>(true, "User games returned", retgames);
         };

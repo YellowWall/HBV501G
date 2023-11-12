@@ -1,6 +1,5 @@
 package hbv501g.Services;
 
-import hbv501g.Persistence.Entities.Game;
 import hbv501g.Persistence.Repositories.HoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +15,8 @@ public class HoleService {
 
     public List<Hole> findAllByUserId(long id) { return holeRepository.findByPlayerId(id); }
 
+    public List<Hole> findAllByGameId(Long gameId){ return holeRepository.findByGameId(gameId); }
+
     public Hole findById(long id){
         return holeRepository.findById(id);
     }
@@ -28,10 +29,6 @@ public class HoleService {
         return holes;
     }
 
-    public List<Hole> getGameHoles(Long gameId){
-        List<Hole> holes = holeRepository.findByGameId(gameId);
-        return holes;
-    }
     public void deleteHole(long id){
         holeRepository.deleteById(id);
     }

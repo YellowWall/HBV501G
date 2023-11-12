@@ -1,6 +1,5 @@
 package hbv501g.Services;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,7 +52,7 @@ public class GameService {
      * @param user spilari sem leitað er að leikjum fyrir
      * @return allir leikir spilara
      */
-    public List<Game> findByUserGame(User user){
+    public List<Game> findALLByUserId(User user){
         List<Game> retgame = gameRepository.findByPlayerId(user.getId());
         return retgame;
     }
@@ -63,7 +62,7 @@ public class GameService {
      * @param userID ID tala spilara sem leitað er að leikjum fyrir
      * @return allir leikir spilara
      */
-    public List<Game> findByUserGame(Long userID){
+    public List<Game> findALLByUserId(Long userID){
         List<Game> retgame = gameRepository.findByPlayerId(userID);
         return retgame;
     }

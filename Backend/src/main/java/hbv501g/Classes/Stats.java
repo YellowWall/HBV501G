@@ -1,17 +1,19 @@
 package hbv501g.Classes;
 
+import java.util.HashMap;
+
 public class Stats {
     private int holesInOne;
     private int numberOfGamesPlayed;
-    private double averageScorePerGame;
+    private HashMap<Long, Double> averageScorePerField;
     private double averageScorePerHole;
 
     public Stats() {}
 
-    public Stats(int holesInOne, int numberOfGamesPlayed, double averageScorePerGame, double averageScorePerHole) {
+    public Stats(int holesInOne, int numberOfGamesPlayed, HashMap<Long, Double> averageScorePerField, double averageScorePerHole) {
         this.holesInOne = holesInOne;
         this.numberOfGamesPlayed = numberOfGamesPlayed;
-        this.averageScorePerGame = averageScorePerGame;
+        this.averageScorePerField = averageScorePerField;
         this.averageScorePerHole = averageScorePerHole;
     }
 
@@ -31,12 +33,12 @@ public class Stats {
         this.numberOfGamesPlayed = numberOfGamesPlayed;
     }
 
-    public double getAverageScorePerGame() {
-        return averageScorePerGame;
+    public HashMap<Long, Double> getAverageScorePerField() {
+        return averageScorePerField;
     }
 
-    public void setAverageScorePerGame(double averageScorePerGame) {
-        this.averageScorePerGame = averageScorePerGame;
+    public void setAverageScorePerField(HashMap<Long, Double> averageScorePerField) {
+        this.averageScorePerField = averageScorePerField;
     }
 
     public double getAverageScorePerHole() {
