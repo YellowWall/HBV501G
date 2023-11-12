@@ -13,6 +13,9 @@ public class HoleService {
     private HoleRepository holeRepository;
 
     public List<Hole> findAll() { return holeRepository.findAll(); }
+
+    public List<Hole> findAllByUserId(long id) { return holeRepository.findByPlayerId(id); }
+
     public Hole findById(long id){
         return holeRepository.findById(id);
     }
