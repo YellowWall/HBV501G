@@ -1,6 +1,5 @@
 package hbv501g.Services;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,16 +17,11 @@ public class GameService {
 
     /**
      * Býr til nýjan leik á gefnum velli
-     * @param firstUser Sá spilari sem býr til leikinn
-     * @param fieldID Völlurinn sem spilað er á
+     * @param game upplýsingar um leikinn.
      * @return Leikurinn sem verið er að spila
      */
-    public Game createGame(User firstUser, Long fieldID){
-        //bætum við prófun fyrir tilvist field eftir að field hefur verið útfært
-        Game newGame = new Game(firstUser.getId(),fieldID,new Date(),"");
-        System.out.println(newGame.toString());
-        newGame = gameRepository.save(newGame);
-        return newGame;
+    public Game createGame(Game game){
+        return gameRepository.save(game);
     };
 
     /**
@@ -42,6 +36,8 @@ public class GameService {
         return null;
     };
 
+    public List<Game> findAll() { return gameRepository.findAll(); }
+
     /**
      * Finnur leik sem hefur tiltekið gameId
      * @param id ID tala leiksins sem leitað er að
@@ -49,18 +45,14 @@ public class GameService {
      */
 
     public Game findByIdGame(long id){
-        var retgame = gameRepository.findById(id);
-        if(retgame.get() == null){
-            return null;
-        }
-        return retgame.get();
+        return gameRepository.findById(id);
     }
     /**
      * skilar öllum leikjum ákveðins spilara
      * @param user spilari sem leitað er að leikjum fyrir
      * @return allir leikir spilara
      */
-    public List<Game> findByUserGame(User user){
+    public List<Game> findALLByUserId(User user){
         List<Game> retgame = gameRepository.findByPlayerId(user.getId());
         return retgame;
     }
@@ -70,23 +62,19 @@ public class GameService {
      * @param userID ID tala spilara sem leitað er að leikjum fyrir
      * @return allir leikir spilara
      */
-    public List<Game> findByUserGame(Long userID){
+    public List<Game> findALLByUserId(Long userID){
         List<Game> retgame = gameRepository.findByPlayerId(userID);
         return retgame;
     }
 
     /**
      * Eyðir þeim leik sem fallið fær
-     * @param game leikurinn sem á að eyða
+     * @param gameId leikurinn sem á að eyða
      * @return true ef tókst að eiða leiknum, annars false
      */
-    public boolean deleteGame(Game game){
-        gameRepository.deleteById(game.getId());
-        var check = gameRepository.findById(game.getId());
-        if(check.get() == null){
-            return true;
-        }
-        return false;
-
+    public boolean deleteGame(Long gameId){
+        gameRepository.deleteById(gameId);
+        var check = gameRepository.findById(gameId);
+        return check == null;
     }
 }

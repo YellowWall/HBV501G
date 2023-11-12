@@ -46,13 +46,10 @@ public class Hole{
         return playerId;
     }
 
-    public int getScore() {
+    public int getYeets() {
         return yeets;
     }
 
-    public void setScore(int score) {
-        this.yeets = score;
-    }
     @Override
     public String toString(){
         String format = "gameID: %x, playerId: %x, Score: %s";

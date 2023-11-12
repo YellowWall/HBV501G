@@ -40,3 +40,6 @@
 {:then user} 
     <p>{user.data.username}</p>
 {/await}
+
+<a href="./newgame">
+<p>new game</p></a>
