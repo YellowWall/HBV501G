@@ -54,9 +54,22 @@ public class ForumController {
     };
     @PostMapping("/replyPost")
     public JsonResponse<Forumpost> postReply(@RequestParam String ppid,@RequestBody Forumpost post){
-        Forumpost reply = forumService.savePost(post);
+        Long parId = Long.parseLong(ppid);
+        if(parId!=null){
+            post.setParentPostId(parId);
+            Forumpost reply = forumService.savePost(post);
+            if(reply != null){
+                return new JsonResponse<Forumpost>(
+                    true,"reply posted",reply
+                );
+            }
+            return new JsonResponse<Forumpost>(
+                false,"bad post thingy",null
+            );
+        }
+        
         return new JsonResponse<Forumpost>(
-            false,"Not Implemented",null);
+            false,"Bad ppid",null);
     }
     @PatchMapping("/editPost")
     public JsonResponse<Forumpost> editPost(@RequestBody Forumpost post){

@@ -15,13 +15,19 @@ public class Forumpost{
     private Date postDate;
     private Date updatePost;
 
-    private final String title;
+    private String title;
     private String text;
 
-    public Forumpost(String title, String text, Long playerId){
+    public Forumpost(){}
+
+    public Forumpost(String title, String text, Long playerId,Long parentPostId, Date postDate,Date updatePost){
         this.title = title;
         this.text = text;
         this.playerId = playerId;
+        this.parentPostId = parentPostId;
+        this.postDate = postDate;
+        this.updatePost = updatePost;
+
     }
 
 

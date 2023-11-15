@@ -46,7 +46,7 @@ public class ForumService {
     public boolean deletePost(Forumpost post){
         forumRepository.delete(post);
         var test = forumRepository.findById(post.getId());
-        if(test.get() != null){
+        if(test != null){
             return false;
         }
         return true;
