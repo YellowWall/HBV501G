@@ -9,12 +9,9 @@ import org.springframework.security.core.authority.AuthorityUtils;
 
 public class AuthenticationService {
 
-    private static final String AUTH_TOKEN_HEADER_NAME = "Authorization";
-    private static final String AUTH_TOKEN = "Baeldung";
     private static final JwtUtils jwtUtils = new JwtUtils();
 
     public static Authentication getAuthentication(HttpServletRequest request) {
-        //String token = request.getHeader(AUTH_TOKEN_HEADER_NAME);
         String token = jwtUtils.resolveToken(request);
         boolean isTokenValid = jwtUtils.validateToken(request);
         System.out.println("TOKEN: " + token + "\n VALID? : " + isTokenValid);

@@ -29,17 +29,7 @@ public class AuthenticationFilter extends GenericFilterBean {
                 System.out.println("PRINCIPAL: " + authentication.getPrincipal().toString());
             SecurityContextHolder.getContext().setAuthentication(authentication);
         } catch (Exception exp) {
-
-            HttpServletResponse httpResponse = (HttpServletResponse) response;
-            httpResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            httpResponse.setContentType(MediaType.APPLICATION_JSON_VALUE);
-            PrintWriter writer = httpResponse.getWriter();
-
-            //writer.write(restres);
-            writer.print(new JsonResponse<String>(false, "Not Authorized", exp.getMessage()));
-            writer.flush();
-            writer.close();
-            return;
+            SecurityContextHolder.getContext().setAuthentication(null);
         }
 
         filterChain.doFilter(request, response);
