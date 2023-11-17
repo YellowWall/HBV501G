@@ -1,55 +1,61 @@
 <script>
-    import { onMount } from 'svelte';
+    import { createEventDispatcher, onMount } from 'svelte';
     import { Table, TableBody, TableBodyCell, TableBodyRow, TableHead, TableHeadCell } from 'flowbite-svelte';
     let backendRoute = 'http://localhost:8080';
     let selected ='select field';
-    let field = [];
-    let number = 0
+    let fields = [];
+    let scores = [
+        {id: 1, hole: 1, throws: 0},
+        {id: 2, hole: 2, throws: 0}
+    ];
 
-    onMount(async function getField(){
-        try {
-            const res = await fetch(backendRoute);
-            if (!res.ok) {
-                throw new Error('Failed to fetch fields');
+    function updateScore(id, key, value) {
+        scores = scores.map(score => {
+            if (score.id === id) {
+                return {...score, [key]: value };
             }
-            const data = await res.json();
-            field = data;
-        } catch (error) {
-            console.error('Error fetching fields: ', error);
-        }
-            
+            return score;
+        })
+    }
+
+    function addRow() {
+        const newId = scores.length > 0 ? scores[scores.length - 1].id + 1 : 1;
+        const newHole = scores.length > 0 ? scores[scores.length - 1].hole + 1 : 1;
+        const newRow = { id: newId, hole: newHole, throws: 0 };
+        scores = [...scores, newRow];
+    }
+
+    //sækir velli
+    onMount(async function getFields(){
+        const res = await fetch(
+            backendRoute + '/field/fields',
+            {method: 'GET',
+                body: JSON.stringify({
+                    fields
+                })
+            }
+        )
     });
 
-    async function scorePost(){
+    //vistar upplýsingar úr töflunni sem nýjan leik
+    async function saveGame(){
         const res = await fetch(
-            backendRoute + '/newgame',
+            backendRoute + '/game/',
             {method: 'POST',
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify({
-                    throws
+                    scores
                 })
             }
         )
     }
-    //þarf að skipta options út fyrir velli úr bakenda
-    let options = [
-        'select field',
-        'field 1',
-        'field 2'
-    ]
-    let hole = [
-        '1',
-        '2',
-        '3',
-    ]
-    $: console.log('changed selected:', selected)
-    $: console.log('updated options:', options)
+
 </script>
 
 <h1>new game</h1>
 
 <select bind:value={selected}>
-    {#each options as value}<options {value}>{value  }</options>{/each}
+    {#each fields as option}<option value={option}>{option}</option>{/each}
 </select>
 
 <table shadow>
@@ -58,17 +64,14 @@
         <TableHeadCell>number of throws</TableHeadCell>
     </TableHead>
     <TableBody class="divide-y">
-        {#each hole as holes, index}
+        {#each scores as score (score.id)}
             <TableBodyRow>
-                {holes}
-                <TableBodyCell>
-                    <input
-                    bind:value={number}
-                    type="number"
-                    name="throws"
-                    >
-                </TableBodyCell>
+                <td>{score.hole}</td>
+                <td><input type="number" bind:value={score.throws} on:input={() => updateScore(score.id, 'throws', score.throws)}/></td>
             </TableBodyRow>
         {/each}
     </TableBody>
 </table>
+
+<button on:click={addRow}>Add Row</button>
+<button on:click={saveGame}>Save Data</button>
