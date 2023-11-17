@@ -20,7 +20,13 @@ public class ForumService {
     * editPost
     * deletePost
     */
-
+    public Forumpost getPostOnly(Long postid){
+        var post = forumRepository.findById(postid);
+        if(post.get()!=null){
+            return post.get();
+        }
+        return null;
+    }
     public List<Forumpost> getAllThreads(){
         List<Forumpost> threadlist = forumRepository.findByParentPostId(0);
         return threadlist;

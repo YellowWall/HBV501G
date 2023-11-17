@@ -85,6 +85,21 @@ public class UserService {
         return user;
 
     }
+    /**
+     * Finds user object by id
+     * @param id user's id
+     * @return user object
+     */
+    public User getUserById(Long id){
+        User user = userRepository.getById(id);
+        if(user != null){
+            user.setSalt("");
+            user.setPassword("");
+            return user;   
+        }
+        return null;
+        
+    }
 
     /**
      * Skilar öllum nöfnum notenda

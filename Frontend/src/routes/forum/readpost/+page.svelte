@@ -1,3 +1,6 @@
+<script>
+	import PostRead from "../../../components/PostRead.svelte";
+</script>
 <section>
-    <ForumPost />
+    <PostRead />
 </section>

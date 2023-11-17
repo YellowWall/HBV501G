@@ -20,13 +20,11 @@ public class Forumpost{
 
     public Forumpost(){}
 
-    public Forumpost(String title, String text, Long playerId,Long parentPostId, Date postDate,Date updatePost){
+    public Forumpost(String title, String text, Long playerId,Long parentPostId){
         this.title = title;
         this.text = text;
         this.playerId = playerId;
         this.parentPostId = parentPostId;
-        this.postDate = postDate;
-        this.updatePost = updatePost;
 
     }
 
