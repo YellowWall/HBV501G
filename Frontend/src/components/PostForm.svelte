@@ -13,16 +13,19 @@
         const parentPostId = ppid;
         const res = await fetch(
             backendRoute,
-            {method:'POST',
-        headers: {"Content-Type":"application/json"},
-        body: JSON.stringify({
-            parentPostId,username,title,text
-        })}
+            {method:"POST",
+            headers: {"Content-Type":"application/json"},
+            body: JSON.stringify({
+                username,
+                title,
+                text
+                })
+            }
         )
         return res.json();
     }
     async function trySubmit(){
-        if(text.length>0){
+        if(text.length>0&&username!=""){
             if(ppid=="0"){
                 backendRoute += "newPost";
                 const json = await submit();

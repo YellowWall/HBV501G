@@ -2,6 +2,7 @@
     import {goto,} from '$app/navigation';
     import {page} from '$app/stores';
     import {onMount} from 'svelte';
+	import DisplayPost from './DisplayPost.svelte';
 
     let datafetched = false;
 
@@ -47,8 +48,7 @@
     <p>loading</p>
 {:then json}
     <pre>
-        <h2>Title:{json.data.title}</h2>
-        <p>{json.data.text}</p>
+        <svelte:component this={DisplayPost} {...json.data}/>
     </pre>
 {:catch error}
     {error.toString()}

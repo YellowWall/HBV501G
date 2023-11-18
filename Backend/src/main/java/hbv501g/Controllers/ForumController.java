@@ -21,7 +21,7 @@ import hbv501g.Persistence.Entities.User;
 import hbv501g.objects.ReturnPost;
 
 @RestController
-@CrossOrigin
+@CrossOrigin("*")
 @RequestMapping("/forum")
 public class ForumController {
     @Autowired
@@ -75,14 +75,22 @@ public class ForumController {
             false,"post not found", null);
     }
     @GetMapping("/post/focus")
-    public JsonResponse<Forumpost> getPostOnly(@RequestParam String postid){
+    public JsonResponse<ReturnPost> getPostOnly(@RequestParam String postid){
+        System.out.println(postid);
         Long id = Long.parseLong(postid);
-        Forumpost post = forumService.getPostOnly(id);
-        if(post != null){
-            return new JsonResponse<Forumpost>(
-                true, "thread returned", post);
+        List<Forumpost> thread = forumService.getThread(id);
+        if(thread != null){
+            Forumpost post = thread.get(0);
+            User user = userService.getUserById(post.getPlayerId());
+            ReturnPost returnPosts = new ReturnPost(post.getTitle(),
+                            post.getText(),
+                            post.getId(),
+                            post.getParentPostId(),
+                            user.getUsername());
+            return new JsonResponse<ReturnPost>(
+                true, "post returned", returnPosts);
         }
-        return new JsonResponse<Forumpost>(
+        return new JsonResponse<ReturnPost>(
             false,"post not found", null);
     }
 
