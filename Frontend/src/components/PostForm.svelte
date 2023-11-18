@@ -3,18 +3,17 @@
     import {browser} from '$app/environment';
     export let ppid;
     let backendRoute = 'http://localhost:8080/'
-    let username;
+    let username = "";
     let title = "";
     let text = "";
     if(browser){
         username = window.sessionStorage.getItem('Username');
     }
     async function submit(){
-        const parentPostId = ppid;
         const res = await fetch(
             backendRoute,
-            {method:"POST",
-            headers: {"Content-Type":"application/json"},
+            {method: 'POST',
+            headers: {"Content-Type": "application/json"},
             body: JSON.stringify({
                 username,
                 title,
@@ -49,6 +48,7 @@
 </script>
 <main>
     <div class="form">
+        <p>{username}</p>
         <form action="">
             <input
             bind:value={title}

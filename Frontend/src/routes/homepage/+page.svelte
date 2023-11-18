@@ -1,8 +1,13 @@
 
 <script>
+        import {browser} from '$app/environment';
         let backendRoute = 'http://localhost:8080';
-        let Username = window.sessionStorage.getItem('Username');
-        let authenticatorTocen = window.sessionStorage.getItem('authenticatorTocen');
+        let Username = "";
+        let authenticatorTocen = "";
+        if(browser){
+            Username = window.sessionStorage.getItem('Username');
+            authenticatorTocen = window.sessionStorage.getItem('authenticatorTocen');
+        }
         //console.log(Username);
         //console.log(authenticatorTocen);
         async function load(){
@@ -43,3 +48,5 @@
 
 <a href="./newgame">
 <p>new game</p></a>
+<a href="./forum">
+<p>Forum</p></a>
