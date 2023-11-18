@@ -69,14 +69,11 @@ public class JwtUtils {
     public boolean validateToken(HttpServletRequest request) {
         String token = resolveToken(request);
         try {
-            Jwts.parser().setSigningKey(secret).isSigned(token);
-
-
-            //OK, we can trust this JWT
-
+            if (!Jwts.parser().setSigningKey(secret).isSigned(token))
+                return false;
         } catch (JwtException e) {
-
             //don't trust the JWT!
+            return false;
         }
 
         return true;
