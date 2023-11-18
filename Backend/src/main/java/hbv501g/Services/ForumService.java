@@ -21,9 +21,9 @@ public class ForumService {
     * deletePost
     */
     public Forumpost getPostOnly(Long postid){
-        var post = forumRepository.findById(postid);
-        if(post.get()!=null){
-            return post.get();
+        Forumpost post = forumRepository.getById(postid);
+        if(post!=null){
+            return post;
         }
         return null;
     }
@@ -32,10 +32,10 @@ public class ForumService {
         return threadlist;
     }   
     public List<Forumpost> getThread(Long postid){
-        var parentpost = forumRepository.findById(postid);
-        if(parentpost.get()!=null){
+        Forumpost parentpost = forumRepository.getById(postid);
+        if(parentpost!=null){
             List<Forumpost> retlist = forumRepository.findByParentPostId(postid);
-            retlist.add(0,parentpost.get());
+            retlist.add(0,parentpost);
             return retlist;
         }
         return null;
