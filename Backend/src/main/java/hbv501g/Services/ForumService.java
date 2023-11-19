@@ -40,12 +40,7 @@ public class ForumService {
         }
         return null;
     }  
-    public Forumpost newThread(Forumpost post){
-        post.setParentPostId(0);
-        return savePost(post);
-    }
     public Forumpost savePost(Forumpost post){
-        post.update();
         Forumpost posted = forumRepository.save(post);
         return posted;
     }

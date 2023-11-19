@@ -11,6 +11,7 @@ import hbv501g.Services.UserService;
 import hbv501g.Persistence.Entities.Forumpost;
 import hbv501g.Persistence.Entities.User;
 import hbv501g.objects.ReturnPost;
+import hbv501g.objects.ForumInput;
 
 @RestController
 @CrossOrigin
@@ -31,10 +32,7 @@ public class ForumController {
                 if(user != null){
                     returnPosts.add(
                         new ReturnPost(
-                            post.getTitle(),
-                            post.getText(),
-                            post.getId(),
-                            post.getParentPostId(),
+                            post,
                             user.getUsername()));
                 }
             }
@@ -53,10 +51,7 @@ public class ForumController {
                 if(user != null){
                     returnPosts.add(
                         new ReturnPost(
-                            post.getTitle(),
-                            post.getText(),
-                            post.getId(),
-                            post.getParentPostId(),
+                            post,
                             user.getUsername()));
                 }
             }
@@ -65,7 +60,7 @@ public class ForumController {
         }
         return new JsonResponse<List<ReturnPost>>(
             false,"post not found", null);
-    }
+    };
     @GetMapping("/post/focus")
     public JsonResponse<ReturnPost> getPostOnly(@RequestParam String postid){
         System.out.println(postid);
@@ -74,58 +69,67 @@ public class ForumController {
         if(thread != null){
             Forumpost post = thread.get(0);
             User user = userService.getUserById(post.getPlayerId());
-            ReturnPost returnPosts = new ReturnPost(post.getTitle(),
-                            post.getText(),
-                            post.getId(),
-                            post.getParentPostId(),
+            ReturnPost returnPosts = new ReturnPost(post,
                             user.getUsername());
             return new JsonResponse<ReturnPost>(
                 true, "post returned", returnPosts);
         }
         return new JsonResponse<ReturnPost>(
             false,"post not found", null);
-    }
+    };
 
     @PostMapping("/newPost")
-    public JsonResponse<Forumpost> postNewThread(@RequestBody ReturnPost post){
+    public JsonResponse<ReturnPost> postNewThread(@RequestBody ForumInput post){
         User user = userService.getUser(post.getUsername());
-        Forumpost sendpost = new Forumpost(post.getTitle(),post.getText(),user.getId(),Long.parseLong("0"));
-        Forumpost nThread = forumService.newThread(sendpost);
+        post.setParentPostId(0L);
+        Forumpost sendpost = new Forumpost(post,user.getId());
+        Forumpost nThread = forumService.savePost(sendpost);
         if(nThread!=null){
-            return new JsonResponse<Forumpost>(
-                true,"posted",nThread
+            ReturnPost returnPost = new ReturnPost(sendpost,
+                    user.getUsername()
+                    );
+            return new JsonResponse<ReturnPost>(
+                true,"posted",returnPost
             );
         }
-        return new JsonResponse<Forumpost>(
+        return new JsonResponse<ReturnPost>(
             false,"post not posted",null);
     };
     @PostMapping("/replyPost")
-    public JsonResponse<Forumpost> postReply(@RequestParam String ppid,@RequestBody ReturnPost res){
+    public JsonResponse<ReturnPost> postReply(@RequestParam String ppid,@RequestBody ForumInput req){
         Long parId = Long.parseLong(ppid);
         if(parId!=null){
-            User user = userService.getUser(res.getUsername());
-            Forumpost post = new Forumpost(res.getTitle(),res.getText(),user.getId(),parId);
+            User user = userService.getUser(req.getUsername());
+            req.setParentPostId(Long.parseLong(ppid));
+            Forumpost post = new Forumpost(req,user.getId());
             Forumpost reply = forumService.savePost(post);
             if(reply != null){
-                return new JsonResponse<Forumpost>(
-                    true,"reply posted",reply
+                ReturnPost returnPost = new ReturnPost(reply,
+                    user.getUsername()
+                    );
+                return new JsonResponse<ReturnPost>(
+                    true,"reply posted",returnPost
                 );
             }
-            return new JsonResponse<Forumpost>(
+            return new JsonResponse<ReturnPost>(
                 false,"bad post thingy",null
             );
         }
         
-        return new JsonResponse<Forumpost>(
+        return new JsonResponse<ReturnPost>(
             false,"Bad ppid",null);
-    }
+    };
     @PatchMapping("/editPost")
-    public JsonResponse<Forumpost> editPost(@RequestBody Forumpost post){
+    public JsonResponse<ReturnPost> editPost(@RequestBody ForumInput req){
+        User user = userService.getUser(req.getUsername());
+        Forumpost post = forumService.getPostOnly(req.getId());
+        post.setText(req.getText());
+        post.update();
         Forumpost reply = forumService.savePost(post);
         if(reply != null){
-            return new JsonResponse<Forumpost>(true,"post edited",reply);
+            return new JsonResponse<ReturnPost>(true,"post edited",new ReturnPost(reply,user.getUsername()));
         }
-        return new JsonResponse<Forumpost>(
+        return new JsonResponse<ReturnPost>(
             false,"Post not edited",null);
     };
     @DeleteMapping("/deletePost")
@@ -136,5 +140,5 @@ public class ForumController {
         }
         return new JsonResponse<Forumpost>(
             false, "Post not deleted", null);
-    }
+    };
 }

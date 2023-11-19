@@ -2,7 +2,7 @@ CREATE SEQUENCE IF NOT EXISTS forum_id_seq
 INCREMENT 1
 START 4;
 
-
+DROP TABLE IF EXISTS public."forum";
 CREATE TABLE IF NOT EXISTS public."forum"
 (
     id integer NOT NULL DEFAULT nextval('forum_id_seq'::regclass),

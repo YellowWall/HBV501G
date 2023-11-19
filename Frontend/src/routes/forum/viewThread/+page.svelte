@@ -1,13 +1,21 @@
 <script>
-    import {goto,} from '$app/navigation';
+    import {invalidateAll,goto,} from '$app/navigation';
     import {page} from '$app/stores';
     import {onMount} from 'svelte';
+    import {browser} from '$app/environment';
 	import DisplayPost from '../../../components/DisplayPost.svelte';
 	import PostForm from '../../../components/PostForm.svelte';
+	import Header from '../../../components/Header.svelte';
     
 
     let backendRoute = 'http://localhost:8080/forum/post?postid=';
     let props;
+    let loggedIn = false;
+    let username = ""
+    if(browser){
+        username = window.sessionStorage.getItem('Username');
+        if(username !=null) loggedIn = true; 
+    }
     async function fetchPosts(){
         const urlParams = new URLSearchParams($page.url.search);
         const id = urlParams.get('id');
@@ -16,19 +24,38 @@
             {
                 method: 'GET',
                 headers: {"Content-Type": "application/json"}
+                
             }
         )
         props= {ppid:id};
         const json = await res.json();
         console.log(json);
+        if(json.data?.[0].title!=null){
+            props = {title:"RE: "+json.data[0].title,ppid:json.data[0].id,};
+        }
         return json;
     }
     let dispPost = fetchPosts();
     
+    async function delPost(id){
+        const res = await fetch(
+            "http://localhost:8080/forum/deletePost",
+            {
+                method:'DELETE',
+                headers:{"Content-Type": "application/json"},
+                body: JSON.stringify({id})
+            }
+        )
+        invalidateAll();
+        goto(window.location.pathname);
+    }
+    function editPost(post){
+
+    }
 
     
 </script>
-
+<Header></Header>
 <h1>FORUM</h1>
 {#await dispPost}
     <h2>Fetching post</h2>
@@ -37,8 +64,15 @@
     {#each dispPost.data as post}
     <li>
          <svelte:component this={DisplayPost} {...post}/>
+         {#if post.username == username}
+            <button on:click={()=>delPost(post.id)}>delete post</button> <button on:click={()=>editPost(post)}>edit post</button>
+            
+         {/if}
     </li>
     {/each}
     </ul>
-    <svelte:component this={PostForm} {...props}/>
+    {#if loggedIn}
+        <h2>New Reply</h2>
+        <svelte:component this={PostForm} {...props}/>
+    {/if}
 {/await}

@@ -70,6 +70,7 @@ public class UserService {
         return jwtUtils.createToken(user);
     }
 
+
     /**
      * Finds user object by username
      * @param username user's username
