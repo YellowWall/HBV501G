@@ -12,8 +12,10 @@
     let props;
     let loggedIn = false;
     let username = ""
+    let token = "";
     if(browser){
         username = window.sessionStorage.getItem('Username');
+        token = window.sessionStorage.getItem("authenticatorTocen");
         if(username !=null) loggedIn = true; 
     }
     async function fetchPosts(){
@@ -23,7 +25,8 @@
             backendRoute + id,
             {
                 method: 'GET',
-                headers: {"Content-Type": "application/json"}
+                headers: {"Content-Type": "application/json",
+                "Authorization":"Bearer"+token}
                 
             }
         )
@@ -35,14 +38,14 @@
         }
         return json;
     }
-    let dispPost = fetchPosts();
     
     async function delPost(id){
         const res = await fetch(
             "http://localhost:8080/forum/deletePost",
             {
                 method:'DELETE',
-                headers:{"Content-Type": "application/json"},
+                headers:{"Content-Type": "application/json",
+                "Authentication":token},
                 body: JSON.stringify({id})
             }
         )
@@ -57,7 +60,7 @@
 </script>
 <Header></Header>
 <h1>FORUM</h1>
-{#await dispPost}
+{#await fetchPosts()}
     <h2>Fetching post</h2>
 {:then dispPost}
     <ul>

@@ -8,7 +8,9 @@
     
     let props = {ppid:"0"};
     let loggedIn = false;
+    let token;
     if(browser){
+        token = window.sessionStorage.getItem('authenticatorTocen');
         if(window.sessionStorage.getItem('Username') !=null) loggedIn = true; 
     }
     let backendRoute = 'http://localhost:8080/forum/top';
@@ -18,21 +20,21 @@
             backendRoute,
             {
                 method: 'GET',
-                headers: {"Content-Type": "application/json"}
+                headers: {"Content-Type": "application/json",
+                'Authorization': `Bearer ${token}`}
             }
         )
         const json = await res.json();
         console.log(json);
         return json;
     }
-    let dispPost = fetchPosts();
     
 
     
 </script>
 
 <h1>FORUM</h1>
-{#await dispPost}
+{#await fetchPosts()}
     <h2>Fetching post</h2>
 {:then dispPost}
     <ul>
