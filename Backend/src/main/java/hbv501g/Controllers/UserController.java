@@ -20,6 +20,12 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @RequestMapping(method = RequestMethod.OPTIONS, path = "/")
+    public JsonResponse<String> optionsRequest()
+    {
+        return new JsonResponse<String>(true, "Allowed", "");
+    }
+
     /**
      * return full user object when given partial User object, purely for debugging. Will be redesigned or completely eliminated before launch
      * @param userName User object containing at least a username

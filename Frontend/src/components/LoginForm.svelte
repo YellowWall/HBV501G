@@ -11,8 +11,7 @@
         const res = await fetch(
             backendRoute + '/login',
             {method: 'POST',
-                headers: {"Content-Type": "application/json",
-                "Authentication":"Bearer "+window.sessionStorage.getItem("authenticatorTocen")},
+                headers: {"Content-Type": "application/json"},
                 body: JSON.stringify({
                     username,
                     password
