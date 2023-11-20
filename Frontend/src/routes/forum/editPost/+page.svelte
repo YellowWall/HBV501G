@@ -4,6 +4,10 @@
     import {page} from '$app/stores';
     import {browser} from '$app/environment';
     let backendRoute = 'http://localhost:8080/forum/';
+    let username;
+    if(browser){
+        username = window.sessionStorage.getItem('username');
+    }
     async function fetchPosts(){
         let token;
         if(browser){
@@ -30,9 +34,12 @@
     {#await fetchPosts()}
         <p>loading</p>
     {:then post} 
+        {#if username != post.data.username}
+        <bold>You do not have permission to edit that post </bold>
+        {:else}
         <svelte:component this={DisplayPost} {...post.data}/>
         <svelte:component this={PostForm} {...post.data}/>
-        
+        {/if}
     {/await}
     
 </main>
