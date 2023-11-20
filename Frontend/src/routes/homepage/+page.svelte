@@ -9,12 +9,13 @@
             authenticatorTocen = window.sessionStorage.getItem('authenticatorTocen');
         }
         //console.log(Username);
-        //console.log(authenticatorTocen);
+        //console.log(window.sessionStorage.getItem("authenticatorTocen"));
         async function load(){
             const res = await fetch(
                 backendRoute + '/user/user',
                 {method: 'POST',
-                headers: {"Content-Type": "application/json"},
+                headers: {"Content-Type": "application/json",
+                "Authentication": "Bearer " + authenticatorTocen},
                 body: JSON.stringify({
                     username: Username,
                     password: '',
@@ -43,7 +44,7 @@
 {#await user}
     <p>Fetching your info</p>
 {:then user} 
-    <p>{user.data.username}</p>
+    <p>{user.username}</p>
 {/await}
 
 <a href="./newgame">
