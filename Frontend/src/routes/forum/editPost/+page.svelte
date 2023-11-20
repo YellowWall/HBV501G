@@ -4,15 +4,15 @@
     import {page} from '$app/stores';
     import {browser} from '$app/environment';
     let backendRoute = 'http://localhost:8080/forum/';
-    let username;
-    if(browser){
-        username = window.sessionStorage.getItem('username');
-    }
+    let allow = false;
+
     async function fetchPosts(){
+        let username;
         let token;
         if(browser){
             token = window.sessionStorage.getItem('authenticatorTocen');
-        }
+            username = window.sessionStorage.getItem('Username');
+        };
         const urlParams = new URLSearchParams($page.url.search);
         const id = urlParams.get('id');
         const res = await fetch(
@@ -25,6 +25,12 @@
             }
         )
         const json = await res.json();
+        console.log(json.data.username);
+        console.log(username);
+        if(json.data.username == username){
+            allow = true;
+        }
+
         return json;
     }
 
@@ -34,7 +40,7 @@
     {#await fetchPosts()}
         <p>loading</p>
     {:then post} 
-        {#if username != post.data.username}
+        {#if !allow}
         <bold>You do not have permission to edit that post </bold>
         {:else}
         <svelte:component this={DisplayPost} {...post.data}/>

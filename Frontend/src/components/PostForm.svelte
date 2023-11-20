@@ -47,7 +47,7 @@
                     headers: {"Content-Type": "application/json",
                             'Authorization': "Bearer "+token},
                     body: JSON.stringify({
-                        id,title,text,username,parentPostId:ppid
+                        id,title,text,username
                     }
                     )
                 }
