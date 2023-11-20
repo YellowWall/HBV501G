@@ -20,33 +20,34 @@ public class ForumService {
     * editPost
     * deletePost
     */
-
+    public Forumpost getPostOnly(Long postid){
+        Forumpost post = forumRepository.getById(postid);
+        if(post!=null){
+            return post;
+        }
+        return null;
+    }
     public List<Forumpost> getAllThreads(){
         List<Forumpost> threadlist = forumRepository.findByParentPostId(0);
         return threadlist;
     }   
     public List<Forumpost> getThread(Long postid){
-        var parentpost = forumRepository.findById(postid);
-        if(parentpost.get()!=null){
+        Forumpost parentpost = forumRepository.getById(postid);
+        if(parentpost!=null){
             List<Forumpost> retlist = forumRepository.findByParentPostId(postid);
-            retlist.add(0,parentpost.get());
+            retlist.add(0,parentpost);
             return retlist;
         }
         return null;
     }  
-    public Forumpost newThread(Forumpost post){
-        post.setParentPostId(0);
-        return savePost(post);
-    }
     public Forumpost savePost(Forumpost post){
-        post.update();
         Forumpost posted = forumRepository.save(post);
         return posted;
     }
     public boolean deletePost(Forumpost post){
         forumRepository.delete(post);
         var test = forumRepository.findById(post.getId());
-        if(test.get() != null){
+        if(test != null){
             return false;
         }
         return true;

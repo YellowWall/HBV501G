@@ -1,7 +1,7 @@
 
 <script>
+        import {browser} from '$app/environment';
         let backendRoute = 'http://localhost:8080';
-
         //console.log(Username);
         //console.log(window.sessionStorage.getItem("authenticatorTocen"));
         async function loadUser(){
@@ -42,3 +42,5 @@
 
 <a href="./newgame">
 <p>new game</p></a>
+<a href="./forum">
+<p>Forum</p></a>
