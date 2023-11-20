@@ -1,18 +1,17 @@
 
 <script>
         let backendRoute = 'http://localhost:8080';
-        let Username = window.sessionStorage.getItem('Username');
-        let authenticatorTocen = window.sessionStorage.getItem('authenticatorTocen');
+
         //console.log(Username);
         //console.log(window.sessionStorage.getItem("authenticatorTocen"));
-        async function load(){
+        async function loadUser(){
             const res = await fetch(
                 backendRoute + '/user/user',
                 {method: 'POST',
                 headers: {"Content-Type": "application/json",
-                "Authentication": "Bearer " + authenticatorTocen},
+                "Authorization": "Bearer " + window.sessionStorage.getItem('authenticatorTocen')},
                 body: JSON.stringify({
-                    username: Username,
+                    username: window.sessionStorage.getItem('Username'),
                     password: '',
                     salt: '',
                     name: ''
@@ -29,17 +28,16 @@
             }
         }
 
-        let user =load();
         //console.log("her er user")
         //console.log(user.data);
 </script>
 
 
 <h1>This is the user homepage</h1>
-{#await user}
+{#await loadUser()}
     <p>Fetching your info</p>
 {:then user} 
-    <p>{user.username}</p>
+    <p>{user.data.username}</p>
 {/await}
 
 <a href="./newgame">
