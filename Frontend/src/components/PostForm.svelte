@@ -8,11 +8,11 @@
     let username = "";
     let titlefail = false;
     let textfail = false;
+    export let id;
     export let text;
     export let title;
-    export let post;
-    if(post == null){
-        post = null;
+    if(id == null){
+        id = null;
     }
     if(text == null){
         text = "";
@@ -28,6 +28,10 @@
         username = window.sessionStorage.getItem('Username');
     }
     async function submit(){
+        let token;
+        if(browser){
+            token = window.sessionStorage.getItem('authenticatorTocen');
+        }
         console.log(titlefail);
         console.log(textfail);
         console.log("button pressed");
@@ -35,21 +39,25 @@
             return;
         };
         let res;
-        if(post != null){
-            post.text = text;
+        if(id != null){
             res = await fetch(
                 'http://localhost:8080/forum/editPost',
                 {
                     method: 'PATCH',
-                    headers: {"Content-Type": "application/json"},
-                    body: JSON.stringify(post)
+                    headers: {"Content-Type": "application/json",
+                            'Authorization': "Bearer "+token},
+                    body: JSON.stringify({
+                        id,title,text,username,parentPostId:ppid
+                    }
+                    )
                 }
             )
         }else{
             res = await fetch(
                 backendRoute,
                 {method: 'POST',
-                headers: {"Content-Type": "application/json"},
+                headers: {"Content-Type": "application/json",
+                    'Authorization': "Bearer "+token},
                 body: JSON.stringify({
                     title,text,username,parentPostId:ppid
                     })
@@ -88,7 +96,6 @@
         goto(window.location.pathname);
         
     }
-    console.log(title);
 </script>
 <main>
     <form on:submit|preventDefault={submit}>
@@ -96,6 +103,9 @@
         <Input label="Username" id="username" value={username} />
     </div>
     <div class="block">
+        {#if id != null}
+            <b>{title}</b>
+        {:else}
         <Label for="title" class="mb-2">Title</Label>
         <Input type="text" color="cream" id="title" bind:value={title} placeholder={title} required/>
         
@@ -103,6 +113,7 @@
             <Helper class="text-sm mt-2">
             title may not be longer than 50 characters
             </Helper>
+        {/if}
         {/if}
     </div>
     <div class="block">

@@ -15,10 +15,12 @@
     let token = "";
     if(browser){
         username = window.sessionStorage.getItem('Username');
-        token = window.sessionStorage.getItem("authenticatorTocen");
         if(username !=null) loggedIn = true; 
     }
     async function fetchPosts(){
+        if(browser){
+            token = window.sessionStorage.getItem('authenticatorTocen');
+        }
         const urlParams = new URLSearchParams($page.url.search);
         const id = urlParams.get('id');
         const res = await fetch(
@@ -40,21 +42,22 @@
     }
     
     async function delPost(id){
+        if(browser){
+            token = window.sessionStorage.getItem('authenticatorTocen');
+        }
         const res = await fetch(
             "http://localhost:8080/forum/deletePost",
             {
-                method:'POST',
+                method:'DELETE',
                 headers:{"Content-Type": "application/json",
-                "Authentication":token},
+                "Authorization":"Bearer "+token},
                 body: JSON.stringify({id})
             }
         )
         invalidateAll();
         goto(window.location.pathname);
     }
-    function editPost(post){
 
-    }
 
     
 </script>
@@ -68,7 +71,7 @@
     <li>
          <svelte:component this={DisplayPost} {...post}/>
          {#if post.username == username}
-            <button on:click={()=>delPost(post.id)}>delete post</button> <button on:click={()=>editPost(post)}>edit post</button>
+            <button on:click={()=>delPost(post.id)}>delete post</button> <button on:click={()=> goto(`./editPost?id=${post.id}`)}>Edit Post</button>
             
          {/if}
     </li>

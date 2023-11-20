@@ -10,14 +10,22 @@
     let loggedIn = false;
     let token;
     let backendRoute = 'http://localhost:8080/forum/top';
+    onMount(()=>   {if(browser) {
+        if(window.sessionStorage.getItem('Username') !=null) loggedIn = true; }
+    })
+    
     async function fetchPosts(){
         const urlParams = new URLSearchParams($page.url.search);
+        if(browser){
+            token = window.sessionStorage.getItem('authenticatorTocen');
+        }
+        console.log(token);
         const res = await fetch(
             backendRoute,
             {
                 method: 'GET',
                 headers: {"Content-Type": "application/json",
-                'Authorization': `Bearer ${token}`}
+                'Authorization': "Bearer "+token}
             }
         )
         const json = await res.json();
@@ -25,17 +33,12 @@
         return json;
     }
     
-    onMount(()=>    {if(browser){
-        token = window.sessionStorage.getItem('authenticatorTocen');
-        console.log(token);
-        if(window.sessionStorage.getItem('Username') !=null) loggedIn = true; }
-    })
-    
+
 </script>
 
-<h1>FORUM</h1>
+<h1>FORUM: ALL THREADS</h1>
 {#await fetchPosts()}
-    <h2>Fetching post</h2>
+    <h2>Fetching threads</h2>
 {:then dispPost}
     <ul>
     {#each dispPost.data as post}

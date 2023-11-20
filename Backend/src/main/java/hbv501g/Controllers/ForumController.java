@@ -120,7 +120,7 @@ public class ForumController {
         return new JsonResponse<ReturnPost>(
             false,"Bad ppid",null);
     };
-    @PostMapping("/editPost")
+    @PatchMapping("/editPost")
     public JsonResponse<ReturnPost> editPost(@RequestBody ForumInput req){
         User user = userService.getUser(req.getUsername());
         Forumpost post = forumService.getPostOnly(req.getId());
@@ -133,7 +133,7 @@ public class ForumController {
         return new JsonResponse<ReturnPost>(
             false,"Post not edited",null);
     };
-    @PostMapping("/deletePost")
+    @DeleteMapping("/deletePost")
     public JsonResponse<Forumpost> deletePost(@RequestBody Forumpost post){
         boolean deleted = forumService.deletePost(post);
         if(deleted){
