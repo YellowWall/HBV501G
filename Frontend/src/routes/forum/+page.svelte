@@ -11,6 +11,7 @@
     let token;
     if(browser){
         token = window.sessionStorage.getItem('authenticatorTocen');
+        console.log(token);
         if(window.sessionStorage.getItem('Username') !=null) loggedIn = true; 
     }
     let backendRoute = 'http://localhost:8080/forum/top';

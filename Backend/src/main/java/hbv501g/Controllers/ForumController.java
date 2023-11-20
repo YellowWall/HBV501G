@@ -22,6 +22,7 @@ public class ForumController {
     @Autowired
     private UserService userService;
 
+    
     @GetMapping("/top")
     public JsonResponse<List<ReturnPost>> getAllParentPosts(){
         List<Forumpost> threads = forumService.getAllThreads();
@@ -119,7 +120,7 @@ public class ForumController {
         return new JsonResponse<ReturnPost>(
             false,"Bad ppid",null);
     };
-    @PatchMapping("/editPost")
+    @PostMapping("/editPost")
     public JsonResponse<ReturnPost> editPost(@RequestBody ForumInput req){
         User user = userService.getUser(req.getUsername());
         Forumpost post = forumService.getPostOnly(req.getId());
@@ -132,7 +133,7 @@ public class ForumController {
         return new JsonResponse<ReturnPost>(
             false,"Post not edited",null);
     };
-    @DeleteMapping("/deletePost")
+    @PostMapping("/deletePost")
     public JsonResponse<Forumpost> deletePost(@RequestBody Forumpost post){
         boolean deleted = forumService.deletePost(post);
         if(deleted){

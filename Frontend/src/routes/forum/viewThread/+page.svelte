@@ -26,7 +26,7 @@
             {
                 method: 'GET',
                 headers: {"Content-Type": "application/json",
-                "Authorization":"Bearer"+token}
+                "Authorization":"Bearer "+token}
                 
             }
         )
@@ -43,7 +43,7 @@
         const res = await fetch(
             "http://localhost:8080/forum/deletePost",
             {
-                method:'DELETE',
+                method:'POST',
                 headers:{"Content-Type": "application/json",
                 "Authentication":token},
                 body: JSON.stringify({id})
