@@ -9,11 +9,6 @@
     let props = {ppid:"0"};
     let loggedIn = false;
     let token;
-    if(browser){
-        token = window.sessionStorage.getItem('authenticatorTocen');
-        console.log(token);
-        if(window.sessionStorage.getItem('Username') !=null) loggedIn = true; 
-    }
     let backendRoute = 'http://localhost:8080/forum/top';
     async function fetchPosts(){
         const urlParams = new URLSearchParams($page.url.search);
@@ -30,7 +25,11 @@
         return json;
     }
     
-
+    onMount(()=>    {if(browser){
+        token = window.sessionStorage.getItem('authenticatorTocen');
+        console.log(token);
+        if(window.sessionStorage.getItem('Username') !=null) loggedIn = true; }
+    })
     
 </script>
 

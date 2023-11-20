@@ -14,7 +14,7 @@ import hbv501g.objects.ReturnPost;
 import hbv501g.objects.ForumInput;
 
 @RestController
-@CrossOrigin(origins = "*",allowedHeaders = {"*"})
+@CrossOrigin(origins = "*",allowedHeaders = "*")
 @RequestMapping("/forum")
 public class ForumController {
     @Autowired
