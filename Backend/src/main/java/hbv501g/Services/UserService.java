@@ -70,6 +70,7 @@ public class UserService {
         return jwtUtils.createToken(user);
     }
 
+
     /**
      * Finds user object by username
      * @param username user's username
@@ -84,6 +85,21 @@ public class UserService {
         user.setPassword("");
         return user;
 
+    }
+    /**
+     * Finds user object by id
+     * @param id user's id
+     * @return user object
+     */
+    public User getUserById(Long id){
+        User user = userRepository.getById(id);
+        if(user != null){
+            user.setSalt("");
+            user.setPassword("");
+            return user;   
+        }
+        return null;
+        
     }
 
     /**

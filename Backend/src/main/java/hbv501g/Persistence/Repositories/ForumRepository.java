@@ -8,5 +8,6 @@ import hbv501g.Persistence.Entities.Forumpost;
 
 public interface ForumRepository extends JpaRepository<Forumpost,Long> {
 
-    public List<Forumpost> findByParentPostId(long postid);
+    public Forumpost findById(long id);
+    public List<Forumpost> findByParentPostId(long parentPostId);
 }

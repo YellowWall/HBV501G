@@ -58,7 +58,6 @@ public class JwtUtils {
     public String resolveToken(HttpServletRequest request) {
         String bearerToken = request.getHeader("Authorization");
         String prefix = "Bearer ";
-
         if (bearerToken != null && bearerToken.startsWith(prefix)) {
             return bearerToken.substring(prefix.length());
         }

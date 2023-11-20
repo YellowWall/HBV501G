@@ -3,6 +3,8 @@ package hbv501g.Persistence.Entities;
 import jakarta.persistence.*;
 import java.util.Date;
 
+import hbv501g.objects.ForumInput;
+
 @Entity
 @Table(name = "forum",schema="public")
 public class Forumpost{
@@ -15,13 +17,26 @@ public class Forumpost{
     private Date postDate;
     private Date updatePost;
 
-    private final String title;
+    private String title;
     private String text;
 
-    public Forumpost(String title, String text, Long playerId){
+    public Forumpost(){}
+
+    public Forumpost(String title, String text, Long playerId,Long parentPostId){
         this.title = title;
         this.text = text;
         this.playerId = playerId;
+        this.parentPostId = parentPostId;
+    }
+    public Forumpost(ForumInput thatpost,Long playerId){
+        this.title = thatpost.getTitle();
+        this.text = thatpost.getText();
+        this.playerId = playerId;
+        this.parentPostId = thatpost.getParentPostId();
+        Date current = new Date();
+        this.postDate = current;
+        this.updatePost = current;
+        
     }
 
 
@@ -50,6 +65,12 @@ public class Forumpost{
 
     public String getText() {
         return text;
+    }
+    public Date getPostDate(){
+        return postDate;
+    }
+    public Date getUpdatePost(){
+        return updatePost;
     }
     public void update(){
         this.updatePost = new Date();

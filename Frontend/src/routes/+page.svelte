@@ -8,3 +8,5 @@
 <p>Press here to signup</p></a>
 <a href="./homepage">
 <p>homepage</p></a>
+<a href="./forum">
+<p>Forum</p></a>
