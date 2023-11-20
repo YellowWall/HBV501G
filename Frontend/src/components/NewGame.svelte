@@ -30,11 +30,13 @@
         const res = await fetch(
             backendRoute + '/field/fields',
             {method: 'GET',
-                body: JSON.stringify({
-                    fields
-                })
+            headers: {"Content-Type": "application/json"}
             }
         )
+        const json = await res.json();
+        if (json.success) {
+            fields = json.data;
+        }
     });
 
     //vistar upplýsingar úr töflunni sem nýjan leik
