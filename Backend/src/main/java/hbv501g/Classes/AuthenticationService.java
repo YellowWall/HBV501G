@@ -12,6 +12,7 @@ public class AuthenticationService {
     private static final JwtUtils jwtUtils = new JwtUtils();
 
     public static Authentication getAuthentication(HttpServletRequest request) {
+        System.out.println(request.getMethod());
         String token = jwtUtils.resolveToken(request);
         boolean isTokenValid = jwtUtils.validateToken(request);
         System.out.println("TOKEN: " + token + "\n VALID? : " + isTokenValid);
