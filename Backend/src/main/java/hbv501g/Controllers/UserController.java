@@ -13,18 +13,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin(origins = "*",allowedHeaders = {"*"})
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/user")
 public class UserController {
 
     @Autowired
     private UserService userService;
-
-    @RequestMapping(method = RequestMethod.OPTIONS, path = "/")
-    public JsonResponse<String> optionsRequest()
-    {
-        return new JsonResponse<String>(true, "Allowed", "");
-    }
 
     /**
      * return full user object when given partial User object, purely for debugging. Will be redesigned or completely eliminated before launch
