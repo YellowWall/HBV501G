@@ -24,4 +24,6 @@ jobs:
     - name: Build jar
       run: mvn clean package
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      run: docker build . --file Dockerfile --tag hbv501g-backend
+    - name: Push the Docker image
+      run: docker push iva1hi/hbv501g:hbv501g-backend
