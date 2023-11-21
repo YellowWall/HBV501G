@@ -8,6 +8,7 @@ import hbv501g.Utils.PasswordUtils;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -92,13 +93,17 @@ public class UserService {
      * @return user object
      */
     public User getUserById(Long id){
-        User user = userRepository.getById(id);
-        if(user != null){
+        Optional<User> opt = null;
+        //System.out.println("user id: "+ id);
+        opt = userRepository.findById(id);
+
+        if(opt.isPresent()){
+            User user = opt.get();
             user.setSalt("");
             user.setPassword("");
             return user;   
         }
-        return null;
+        return new User("User deleted","","","User deleted");
         
     }
 
