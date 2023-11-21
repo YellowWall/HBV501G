@@ -1,0 +1,76 @@
+<script>
+    import {browser} from '$app/environment';
+    export let gameId;
+    export let id;
+    export let username;
+    export let yeets;
+    if(yeets == null){
+        yeets = 0;
+    };
+    if(id == null){
+        id = null;
+    };
+    if(gameId == null){
+        gameId = null;
+    };
+    
+    let backendRoute = 'http://localhost:8080/';
+    
+    async function postHole(){
+        const res = await fetch(
+                backendRoute +"hole/postform",
+                {
+                    method: 'POST',
+                    headers: {"Content-Type": "application/json",
+                            "Authorization": "Bearer "+window.sessionStorage.getItem('authenticatorTocen')},
+                    body: JSON.stringify({
+                        gameId,username,yeets
+                    }
+                    )
+                }
+            )
+            return await res.json();
+    }
+    async function patchHole(){
+        const res = await fetch(
+                backendRoute +"hole/updateScore",
+                {
+                    method: 'Patch',
+                    headers: {"Content-Type": "application/json",
+                            "Authorization": "Bearer "+window.sessionStorage.getItem('authenticatorTocen')},
+                    body: JSON.stringify({
+                        id,yeets
+                    }
+                    )
+                }
+            )
+            return await res.json();
+    }
+    function submitPost(){
+        if(id==null){
+            postHole();
+        }else{ patchHole()};
+    }
+    
+
+</script>
+<main>
+    {#if id !=null}
+    <p>Uppfæra skráningu holu</p>
+    {:else}
+    <p>Skrá nýja holu</p>
+    {/if}
+    <form action="">
+        <input 
+        bind:value={yeets}
+        type="number"
+        min="0" max="50"
+        name="Köst"
+        placeholder={yeets}
+        >
+        <input 
+        on:click={submitPost}
+        type="submit"
+        value="Senda">
+    </form>
+</main>
