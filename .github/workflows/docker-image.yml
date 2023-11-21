@@ -31,4 +31,4 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
     - name: Push the Docker image
-      run: docker push iva1hi/hbv501g:hbv501g-backend
+      run: docker push hbv501g-backend
