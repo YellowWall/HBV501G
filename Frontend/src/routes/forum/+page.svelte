@@ -10,9 +10,6 @@
     let loggedIn = false;
     let token;
     let backendRoute = 'http://localhost:8080/forum/top';
-    onMount(()=>   {if(browser) {
-        if(window.sessionStorage.getItem('Username') !=null) loggedIn = true; }
-    })
     
     async function fetchPosts(){
         const urlParams = new URLSearchParams($page.url.search);

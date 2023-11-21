@@ -3,12 +3,16 @@ package hbv501g.Controllers;
 import hbv501g.Classes.JsonResponse;
 import hbv501g.Persistence.Entities.Game;
 import hbv501g.Persistence.Entities.Hole;
+import hbv501g.Persistence.Entities.User;
+import hbv501g.objects.ReturnHole;
 import hbv501g.Services.GameService;
 import hbv501g.Services.HoleService;
 import hbv501g.Services.UserService;
+import hbv501g.Services.FieldService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -25,6 +29,9 @@ public class HoleController {
     @Autowired
     private UserService uService;
 
+    @Autowired
+    private FieldService fService;
+
     @GetMapping("/")
     public JsonResponse<List<Hole>> getAllHoles() {
         List<Hole> holes = holeService.findAll();
@@ -34,6 +41,25 @@ public class HoleController {
         }
 
         return new JsonResponse<List<Hole>>(false, "Holes not found", null);
+    }
+
+    @GetMapping("/displayholes/{id}")
+    public JsonResponse<List<ReturnHole>> getReturnHoles(@PathVariable Long id){
+        List<Hole> holes = holeService.findAllByGameId(id);
+        if( holes != null){
+            List<ReturnHole> retholes = new ArrayList<ReturnHole>();
+            for(Hole hole: holes){
+                User user = uService.getUserById(hole.getPlayerId());
+                String username = null;
+                if(user != null){
+                    username = user.getUsername();
+                }
+                ReturnHole temp = new ReturnHole(hole,username);
+                retholes.add(temp);
+            }
+            return new JsonResponse<List<ReturnHole>>(true,"returnHoles returned",retholes);
+        }
+        return new JsonResponse<List<ReturnHole>>(false,"No holes found",null);
     }
 
     @GetMapping("/{id}")
