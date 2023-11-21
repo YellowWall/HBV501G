@@ -103,7 +103,7 @@ public class UserService {
             user.setPassword("");
             return user;   
         }
-        return null;
+        return new User("User deleted","","","User deleted");
         
     }
 
