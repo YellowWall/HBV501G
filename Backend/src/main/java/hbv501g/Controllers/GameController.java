@@ -37,6 +37,20 @@ public class GameController {
 
         return new JsonResponse<List<Game>>(false, "Games not found", null);
     }
+
+    @GetMapping("/displaygame/{id}")
+    public JsonResponse<ReturnGame> getThisReturnGame(@PathVariable Long id){
+        Game game = gameService.findByIdGame(id);
+
+        if (game != null) {
+            Field ourField = fieldService.getFieldId(game.getFieldId());
+            User ourUser = uService.getUserById(game.getPlayerId());
+            ReturnGame retGame = new ReturnGame(ourUser,game,ourField);
+            return new JsonResponse<ReturnGame>(true, "Game found", retGame);
+        }
+        return new JsonResponse<ReturnGame>(false, "Game not found", null);
+
+    }
     
     @GetMapping("/displaygames/all")
     public JsonResponse<List<ReturnGame>> getAllReturnGames() {
