@@ -45,7 +45,7 @@
                 {
                     method: 'PATCH',
                     headers: {"Content-Type": "application/json",
-                            'Authorization': "Bearer "+token},
+                            "Authorization": "Bearer "+window.sessionStorage.getItem('authenticatorTocen')},
                     body: JSON.stringify({
                         id,title,text,username
                     }

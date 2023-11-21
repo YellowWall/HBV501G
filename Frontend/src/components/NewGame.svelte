@@ -1,5 +1,6 @@
 <script>
     import { createEventDispatcher, onMount } from 'svelte';
+    import {browser} from '$app/environment';
     import { Table, TableBody, TableBodyCell, TableBodyRow, TableHead, TableHeadCell } from 'flowbite-svelte';
     let backendRoute = 'http://localhost:8080';
     let selected ='select field';
@@ -30,7 +31,8 @@
         const res = await fetch(
             backendRoute + '/field/fields',
             {method: 'GET',
-            headers: {"Content-Type": "application/json"}
+            headers: {"Content-Type": "application/json",
+            "Authorization": "Bearer "+window.sessionStorage.getItem('authenticatorTocen')}
             }
         )
         const json = await res.json();
@@ -44,7 +46,8 @@
         const res = await fetch(
             backendRoute + '/game/',
             {method: 'POST',
-                headers: {"Content-Type": "application/json"},
+                headers: {"Content-Type": "application/json",
+                        "Authorization": "Bearer "+window.sessionStorage.getItem('authenticatorTocen')},
                 body: JSON.stringify({
                     scores
                 })
@@ -57,7 +60,7 @@
 <h1>new game</h1>
 
 <select bind:value={selected}>
-    {#each fields as option}<option value={option}>{option}</option>{/each}
+    {#each fields as option}<option value={option}>{option.name}</option>{/each}
 </select>
 
 <table shadow>
