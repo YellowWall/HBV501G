@@ -11,13 +11,19 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./Backend
 
     steps:
     - uses: actions/checkout@v3
-    - run: ls ./
-    - run: cd Backend
+    - uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin' # See 'Supported distributions' for available options
+        java-version: '17'
     - name: Build jar
       run: mvn clean package
-    - run: cd ..
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      run: docker build . --file Dockerfile --tag hbv501g-backend
+    - name: Push the Docker image
+      run: docker push iva1hi/hbv501g:hbv501g-backend
