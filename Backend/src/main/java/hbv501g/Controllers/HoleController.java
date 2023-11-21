@@ -5,6 +5,7 @@ import hbv501g.Persistence.Entities.Game;
 import hbv501g.Persistence.Entities.Hole;
 import hbv501g.Persistence.Entities.User;
 import hbv501g.objects.ReturnHole;
+import hbv501g.objects.HoleInput;
 import hbv501g.Services.GameService;
 import hbv501g.Services.HoleService;
 import hbv501g.Services.UserService;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.text.Style;
 
 @RestController
 @CrossOrigin
@@ -81,6 +84,29 @@ public class HoleController {
 
         }
         return new JsonResponse<Hole>(true, "Hole saved", retHole);
+    }
+    @PostMapping("/postform")
+    public JsonResponse<Hole> postHole(@RequestBody HoleInput holeInput){
+        System.out.println(holeInput.getUsername());
+        User user = uService.getUser(holeInput.getUsername());
+        System.out.println(holeInput.getGameId());
+        Hole hole = new Hole(holeInput.getGameId(),user.getId(),holeInput.getYeets());
+        System.out.println(holeInput.getYeets());
+        Hole rethole = holeService.saveHole(hole);
+        if(rethole==null){
+            return new JsonResponse<Hole>(false,"something went wrong",null);
+        }
+        return new JsonResponse<Hole>(true,"hole saved",rethole);
+    }
+    @PatchMapping("/updateScore")
+    public JsonResponse<Hole> postFormHole(@RequestBody HoleInput holeInput){
+        Hole hole = holeService.findById(holeInput.getId());
+        hole.setYeets(holeInput.getYeets());
+        Hole rethole = holeService.saveHole(hole);
+        if(rethole== null){
+            return new JsonResponse<Hole>(false,"Something went wrong",null);
+        }
+        return new JsonResponse<Hole>(true,"hole updated",rethole);
     }
 
     @DeleteMapping("/{id}")
