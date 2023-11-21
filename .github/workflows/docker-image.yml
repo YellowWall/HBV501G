@@ -14,7 +14,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    - run: cd Backend
     - name: Build jar
       run: mvn clean package
+    - run: cd ..
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
