@@ -29,4 +29,4 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag hbv501g:backend && ls ./ && docker push ${{ secrets.DOCKERHUB_USERNAME }}/hbv501g:backend
+      run: docker build . --file Dockerfile --tag ${{ secrets.DOCKERHUB_USERNAME }}/hbv501g:backend && docker push ${{ secrets.DOCKERHUB_USERNAME }}/hbv501g:backend
