@@ -28,7 +28,7 @@ public class StatisticsController {
     private HoleService holeService;
 
     @GetMapping("/{id}")
-    public JsonResponse<Stats> getStats(@RequestParam long id) {
+    public JsonResponse<Stats> getStats(@PathVariable long id) {
         Stats stats = new Stats();
 
         List<Hole> holes = holeService.findAllByUserId(id);
@@ -48,7 +48,12 @@ public class StatisticsController {
             }
 
             sumOfYeets += y;
-            yeetsPerGame.put(gid, yeetsPerGame.get(gid) + y);
+            int prevYeets = 0;
+
+            if (yeetsPerGame.get(gid) != null)
+                prevYeets = yeetsPerGame.get(gid);
+
+            yeetsPerGame.put(gid,  prevYeets + y);
         }
 
         stats.setAverageScorePerHole(sumOfYeets / holes.size());

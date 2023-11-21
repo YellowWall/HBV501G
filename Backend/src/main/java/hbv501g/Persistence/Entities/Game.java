@@ -1,5 +1,6 @@
 package hbv501g.Persistence.Entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
 
@@ -14,6 +15,7 @@ public class Game{
     private long id;
     private long fieldId;
     private long playerId;
+    @JsonFormat(pattern = "dd-MM-yyyy")
     private Date gameDate;
     private String score;
 
