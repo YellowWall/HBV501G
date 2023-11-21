@@ -17,9 +17,8 @@ public class ReturnGame {
     @JsonFormat(pattern = "dd-MM-yyyy")
     private Date gameDate;
     private String score;
-    private List<ReturnHole> holes;
     
-    public ReturnGame(User user,Game game,Field field,List<ReturnHole> holes){
+    public ReturnGame(User user,Game game,Field field){
         this.id = game.getId();
         this.gameDate = game.getDate();
         this.score = game.getScore();
@@ -27,7 +26,6 @@ public class ReturnGame {
         else this.fieldName = null;
         if(user != null) this.username = user.getUsername();
         else this.username = null;
-        this.holes = holes;
     }
     public long getId(){
         return id;
@@ -44,10 +42,6 @@ public class ReturnGame {
     public String getScore(){
         return score;
     }
-    public List<ReturnHole> getHoles(){
-        return holes;
-    }
-
 
     
 }

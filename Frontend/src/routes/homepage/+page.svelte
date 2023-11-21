@@ -44,3 +44,5 @@
 <p>new game</p></a>
 <a href="./forum">
 <p>Forum</p></a>
+<a href="./viewallgames">
+<p>sjá alla leiki</p></a>

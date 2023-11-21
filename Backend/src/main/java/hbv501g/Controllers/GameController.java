@@ -13,7 +13,7 @@ import hbv501g.objects.ReturnGame;
 
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/game")
 public class GameController {
     @Autowired
@@ -29,13 +29,23 @@ public class GameController {
     private FieldService fieldService;
 
     @GetMapping("/")
-    public JsonResponse<List<ReturnGame>> getAllGames() {
+    public JsonResponse<List<Game>> getAllGames(){
+                List<Game> games = gameService.findAll();
+        if (games != null) {
+            return new JsonResponse<List<Game>>(true, "Games found", games);
+        }
+
+        return new JsonResponse<List<Game>>(false, "Games not found", null);
+    }
+    
+    @GetMapping("/displaygames/all")
+    public JsonResponse<List<ReturnGame>> getAllReturnGames() {
         List<Game> games = gameService.findAll();
         List<ReturnGame> retgames = new ArrayList<ReturnGame>();
         for(Game game:games){
             Field ourField = fieldService.getFieldId(game.getFieldId());
             User ourUser = uService.getUserById(game.getPlayerId());
-            ReturnGame temp = new ReturnGame(ourUser,game,ourField, null);
+            ReturnGame temp = new ReturnGame(ourUser,game,ourField);
             retgames.add(temp);
         }
 

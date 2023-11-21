@@ -1,22 +1,17 @@
 <script>
-    import {page} from '$app/stores';
-    import {onMount} from 'svelte';
     import {browser} from '$app/environment';
+	import DisplayGame from '../../components/DisplayGame.svelte';
 
-    let backendRoute = 'http://localhost:8080/games/';
+    let backendRoute = 'http://localhost:8080/game/displaygames/all';
+
+    async function fetchGames(){
     
-    async function fetchPosts(){
-        const urlParams = new URLSearchParams($page.url.search);
-        if(browser){
-            token = window.sessionStorage.getItem('authenticatorTocen');
-        }
-        console.log(token);
         const res = await fetch(
             backendRoute,
             {
                 method: 'GET',
                 headers: {"Content-Type": "application/json",
-                'Authorization': "Bearer "+token}
+                "Authorization": "Bearer " + window.sessionStorage.getItem('authenticatorTocen')}
             }
         )
         const json = await res.json();
@@ -24,3 +19,12 @@
         return json;
     }
 </script>
+<main>
+    {#await fetchGames()}
+        <p>loading</p>
+    {:then games}
+    {#each games.data as game}
+    <svelte:component this={DisplayGame} {...game}/>
+    {/each}
+    {/await}
+</main>
