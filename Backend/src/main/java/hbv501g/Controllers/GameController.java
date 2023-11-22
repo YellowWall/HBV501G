@@ -72,7 +72,7 @@ public class GameController {
         return new JsonResponse<List<ReturnGame>>(false, "Games not found", null);
     }
 
-    @GetMapping("/displaygames/user/{user}")
+    @GetMapping("/displaygames/user/{username}")
     public JsonResponse<List<ReturnGame>> getAllUserReturnGames(@PathVariable String username){
         User user = uService.getUser(username);
         List<Game> games = gameService.findALLByUserId(user);

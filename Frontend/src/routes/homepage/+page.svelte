@@ -51,3 +51,5 @@
 <p>Forum</p></a>
 <a href="./viewallgames">
 <p>sjá alla leiki</p></a>
+<a href="./games/viewMyGames">
+<p>Sjá leiki skráða á þig</p></a>

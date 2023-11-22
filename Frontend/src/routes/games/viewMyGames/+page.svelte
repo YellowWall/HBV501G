@@ -1,6 +1,7 @@
 <script>
     import {browser} from '$app/environment';
-	import DisplayGame from '../../components/DisplayGame.svelte';
+	import Header from '../../../components/Header.svelte';
+	import DisplayGame from '../../../components/DisplayGame.svelte';
 
     let backendRoute = 'http://localhost:8080/game/displaygames/user/';
 
@@ -20,6 +21,7 @@
     }
 </script>
 <main>
+    <Header/>
     {#await fetchGames()}
         <p>loading</p>
     {:then games}
