@@ -3,7 +3,7 @@
 	import Header from '../../../components/Header.svelte';
 	import DisplayGame from '../../../components/DisplayGame.svelte';
 
-    let backendRoute = 'http://localhost:8080/game/displaygames/user/';
+    let backendRoute = 'https://hbv501g-backend.onrender.com/game/displaygames/user/';
 
     async function fetchGames(){
     

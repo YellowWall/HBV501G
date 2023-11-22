@@ -3,12 +3,12 @@
     import DisplayHole from "../../../components/DisplayHole.svelte";
     import {page} from '$app/stores';
     import {browser} from '$app/environment';
-	import PostHoleForm from "../../../components/postHoleForm.svelte";
+	import PostHoleForm from "../../../components/PostHoleForm.svelte";
     import TogglePatchHole from "../../../components/formutils/TogglePatchHole.svelte";
 	import Header from "../../../components/Header.svelte";
 	import { Button } from "flowbite-svelte";
 
-    const backendRoute = "http://localhost:8080/"
+    const backendRoute = "https://hbv501g-backend.onrender.com/"
     const urlParams = new URLSearchParams($page.url.search);
     const id = urlParams.get('id');
     let username;
