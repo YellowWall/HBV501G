@@ -9,18 +9,12 @@
         //console.log(Username);
         //console.log(window.sessionStorage.getItem("authenticatorTocen"));
         async function loadUser(){
+            console.log(backendRoute + "/user/user/?username="+window.sessionStorage.getItem('Username'))
             const res = await fetch(
-                backendRoute + '/user/user',
-                {method: 'POST',
+                backendRoute + '/user/user/?username='+window.sessionStorage.getItem('Username'),
+                {method: 'GET',
                 headers: {"Content-Type": "application/json",
-                "Authorization": "Bearer " + window.sessionStorage.getItem('authenticatorTocen')},
-                body: JSON.stringify({
-                    username: window.sessionStorage.getItem('Username'),
-                    password: '',
-                    salt: '',
-                    name: ''
-                    })
-                }
+                "Authorization": "Bearer " + window.sessionStorage.getItem('authenticatorTocen')}}
             )
             //console.log('her er res');
             //console.log(res);

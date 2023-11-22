@@ -9,21 +9,16 @@
     
     let props = {ppid:"0"};
     let loggedIn = false;
-    let token;
-    let backendRoute = 'http://localhost:8080/forum/top';
+    let backendRoute = 'https://hbv501g-backend.onrender.com/forum/top';
     
     async function fetchPosts(){
         const urlParams = new URLSearchParams($page.url.search);
-        if(browser){
-            token = window.sessionStorage.getItem('authenticatorTocen');
-        }
-        console.log(token);
         const res = await fetch(
             backendRoute,
             {
                 method: 'GET',
                 headers: {"Content-Type": "application/json",
-                'Authorization': "Bearer "+token}
+                'Authorization': "Bearer "+window.sessionStorage.getItem('authenticatorTocen')}
             }
         )
         const json = await res.json();

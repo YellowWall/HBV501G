@@ -4,7 +4,7 @@
     import {page} from '$app/stores';
     import {browser} from '$app/environment';
 	import Header from "../../../components/Header.svelte";
-    let backendRoute = 'http://localhost:8080/forum/';
+    let backendRoute = 'https://hbv501g-backend.onrender.com/forum/';
     let allow = false;
 
     async function fetchPosts(){

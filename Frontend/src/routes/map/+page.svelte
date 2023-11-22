@@ -1,6 +1,8 @@
 <script>
     import {Img} from 'flowbite-svelte'
+	import Header from '../../components/Header.svelte';
 </script>
+<Header/>
 
 <h1>Here are maps displaying two folf fields in Reykjavík and their location</h1>
 <Img src="https://i.imgur.com/NHHgSym.png" size="max-w-md" alt="fields in Reykjavík" caption="Map of fields in Reykjavík"/>
