@@ -3,6 +3,7 @@
 	import PostForm from "../../../components/PostForm.svelte";
     import {page} from '$app/stores';
     import {browser} from '$app/environment';
+	import Header from "../../../components/Header.svelte";
     let backendRoute = 'http://localhost:8080/forum/';
     let allow = false;
 
@@ -36,6 +37,7 @@
 
 </script>
 <main>
+    <Header/>
     <h5>Edit Post</h5>
     {#await fetchPosts()}
         <p>loading</p>

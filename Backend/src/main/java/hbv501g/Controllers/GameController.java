@@ -2,6 +2,7 @@ package hbv501g.Controllers;
 
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -71,6 +72,27 @@ public class GameController {
         return new JsonResponse<List<ReturnGame>>(false, "Games not found", null);
     }
 
+    @GetMapping("/displaygames/user/{user}")
+    public JsonResponse<List<ReturnGame>> getAllUserReturnGames(@PathVariable String username){
+        User user = uService.getUser(username);
+        List<Game> games = gameService.findALLByUserId(user);
+        List<ReturnGame> retgames = new ArrayList<ReturnGame>();
+        for(Game game:games){
+            Field ourField = fieldService.getFieldId(game.getFieldId());
+            User ourUser = uService.getUserById(game.getPlayerId());
+            ReturnGame temp = new ReturnGame(ourUser,game,ourField);
+            retgames.add(temp);
+        }
+
+
+        if (retgames.size()>0) {
+            return new JsonResponse<List<ReturnGame>>(true, "Games found", retgames);
+        }
+
+        return new JsonResponse<List<ReturnGame>>(false, "Games not found", null);
+
+    }
+
     /**
      * skilar game hlut fyrir id leiks
      * @param id
@@ -100,6 +122,21 @@ public class GameController {
         };
         return new JsonResponse<Game>(true, "game made", newGame);
 
+    }
+
+    @PostMapping("/gameformpost")
+    public  JsonResponse<Game> postGameForm(@RequestBody GameInput query){
+        Field field = fieldService.getFieldId(query.getFieldId());
+        User user = uService.getUser(query.getUsername());
+        if(user == null || field == null){
+            return new JsonResponse<Game>(false,"invalid username or field Id",null);
+        }
+        Game game = new Game(user.getId(),field.getId(), new Date(),"");
+        Game retgame = gameService.createGame(game);
+        if(retgame!=null){
+            return new JsonResponse<Game>(true,"New Game Registered",retgame);
+        }
+        return new JsonResponse<Game>(false,"game not registered",null);
     }
 
     @DeleteMapping("/{id}")

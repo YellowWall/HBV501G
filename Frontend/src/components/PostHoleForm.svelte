@@ -1,5 +1,6 @@
 <script>
     import {browser} from '$app/environment';
+    import {goto} from '$app/navigation';
     export let gameId;
     export let id;
     export let username;
@@ -10,9 +11,14 @@
     if(id == null){
         id = null;
     };
-    if(gameId == null){
+    if(gameId== null){
         gameId = null;
-    };
+    }
+    if(username == null){
+        if(browser){
+            username = window.sessionStorage.getItem("Username");
+        }
+    }
     
     let backendRoute = 'http://localhost:8080/';
     
@@ -35,7 +41,7 @@
         const res = await fetch(
                 backendRoute +"hole/updateScore",
                 {
-                    method: 'Patch',
+                    method: 'PATCH',
                     headers: {"Content-Type": "application/json",
                             "Authorization": "Bearer "+window.sessionStorage.getItem('authenticatorTocen')},
                     body: JSON.stringify({
@@ -44,7 +50,10 @@
                     )
                 }
             )
-            return await res.json();
+            const json = await res.json();
+            if(json.success){
+                gameId = json.data.gameId;
+            }
     }
     function submitPost(){
         if(id==null){
@@ -69,7 +78,7 @@
         placeholder={yeets}
         >
         <input 
-        on:click={submitPost}
+        on:click|preventDefault={submitPost}
         type="submit"
         value="Senda">
     </form>

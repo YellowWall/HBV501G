@@ -4,7 +4,7 @@
 
     export let username;
 
-    export let id;
+    //export const id;
     //let hrefpointer = "/games/viewGame?id="+id;
 </script>
 <main>

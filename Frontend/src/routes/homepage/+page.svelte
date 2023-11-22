@@ -1,7 +1,9 @@
 
 <script>
         import {browser} from '$app/environment';
+        import NewGameForm from '../../components/NewGameForm.svelte';
         let backendRoute = 'http://localhost:8080';
+        let newgame =false;
         //console.log(Username);
         //console.log(window.sessionStorage.getItem("authenticatorTocen"));
         async function loadUser(){
@@ -40,8 +42,11 @@
     <p>{user.data.username}</p>
 {/await}
 
-<a href="./newgame">
-<p>new game</p></a>
+{#if !newgame}
+<button on:click={()=>{newgame = true}}>New Game</button>
+{:else}
+<NewGameForm/>
+{/if}
 <a href="./forum">
 <p>Forum</p></a>
 <a href="./viewallgames">

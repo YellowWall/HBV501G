@@ -5,6 +5,7 @@
     import {browser} from '$app/environment';
     import PostForm from '../../components/PostForm.svelte';
 	import DisplayPost from '../../components/DisplayPost.svelte';
+	import Header from '../../components/Header.svelte';
     
     let props = {ppid:"0"};
     let loggedIn = false;
@@ -32,7 +33,7 @@
     
 
 </script>
-
+<Header/>
 <h1>FORUM: ALL THREADS</h1>
 {#await fetchPosts()}
     <h2>Fetching threads</h2>

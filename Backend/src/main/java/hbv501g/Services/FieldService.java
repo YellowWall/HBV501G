@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import hbv501g.Persistence.Entities.Field;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class FieldService {
@@ -21,9 +22,10 @@ public class FieldService {
     }
 
     public Field getFieldId(Long id){
-        var fieldId = fieldRepository.findById(id);
-        Field field = fieldId.get();
-        return field;
+        Optional<Field> field = null;
+        field = fieldRepository.findById(id);
+        if(field.isPresent())return field.get();
+        return null;
     }
 
     public Field saveField(Field field){
