@@ -17,16 +17,21 @@
         )
         const json = await res.json();
         console.log(json);
-        return json.data;
+        if(json.success){
+            return json.data;
+        }else return json.data;
     }
 </script>
 <main>
     <Header/>
+    <h2>Your games</h2>
     {#await fetchGames()}
         <p>loading</p>
     {:then games}
     {#each games as game}
     <svelte:component this={DisplayGame} {...game}/>
     {/each}
+    {:catch Error}
+        <p style="color:red">{Error.message}</p>
     {/await}
 </main>

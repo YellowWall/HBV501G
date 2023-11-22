@@ -1,6 +1,8 @@
 
 <script>
         import {browser} from '$app/environment';
+        import {A} from 'flowbite-svelte';
+        import {goto} from '$app/navigation';
         import NewGameForm from '../../components/NewGameForm.svelte';
         let backendRoute = 'https://hbv501g-backend.onrender.com';
         let newgame =false;
@@ -29,6 +31,11 @@
                 return data;
             }
         }
+        function logOut(){
+            window.sessionStorage.removeItem('authenticatorTocen');
+            window.sessionStorage.removeItem('Username');
+            goto('/');
+        }
 
         //console.log("her er user")
         //console.log(user.data);
@@ -40,6 +47,8 @@
     <p>Fetching your info</p>
 {:then user} 
     <p>{user.data.username}</p>
+    <button on:click={()=>logOut()}>log out</button>
+    <br/>
 {/await}
 
 {#if !newgame}
@@ -53,3 +62,6 @@
 <p>sjá alla leiki</p></a>
 <a href="./games/viewMyGames">
 <p>Sjá leiki skráða á þig</p></a>
+<A class="font-medium hover:underline" href="./map">
+    Maps
+</A>
