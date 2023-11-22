@@ -1,6 +1,7 @@
 
 <script>
         import {browser} from '$app/environment';
+        import {A} from 'flowbite-svelte';
         import {goto} from '$app/navigation';
         import NewGameForm from '../../components/NewGameForm.svelte';
         let backendRoute = 'https://hbv501g-backend.onrender.com';
@@ -61,3 +62,6 @@
 <p>sjá alla leiki</p></a>
 <a href="./games/viewMyGames">
 <p>Sjá leiki skráða á þig</p></a>
+<A class="font-medium hover:underline" href="./map">
+    Maps
+</A>
