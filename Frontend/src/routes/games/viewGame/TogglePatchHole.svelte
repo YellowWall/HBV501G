@@ -1,7 +1,7 @@
 <script>
 	import { Button } from "flowbite-svelte";
     import {browser} from '$app/environment';
-    import PostHoleForm from "../../../components/postHoleForm.svelte";
+    import PostHoleForm from "../../../components/PostHoleForm.svelte";
     let username;
     if(browser){
         username = window.sessionStorage.getItem("Username");
