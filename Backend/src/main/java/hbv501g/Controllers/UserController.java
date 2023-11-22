@@ -12,6 +12,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/user")
@@ -25,14 +26,17 @@ public class UserController {
      * @param userName User object containing at least a username
      * @return full User object for appropriate username
      */
-    @PostMapping("/user")
-    public JsonResponse<User> getUser(@RequestBody User userName){
+    @GetMapping("/user/")
+    public JsonResponse<User> getUser(@RequestParam String username){
         //System.out.println(userName.getUsername());
-        if(userName == null || userName.getUsername() == null){
-            return null;
+        if(username == null || username == ""){
+            return new JsonResponse<User>(false,"missing username",null);
         }
-        User returnUser = userService.getUser(userName.getUsername());
-        return new JsonResponse<User>(true,"User info",returnUser);
+        User returnUser = userService.getUser(username);
+        if(returnUser!=null){
+            return new JsonResponse<User>(true,"User info",returnUser);
+        }
+        return new JsonResponse<User>(false,"user not found",null);
     }
 
     /**
