@@ -4,7 +4,7 @@
     import { Label, Input, Helper, Button } from 'flowbite-svelte';
     
     export let ppid;
-    let backendRoute = 'http://localhost:8080/forum/'
+    let backendRoute = 'https://hbv501g-backend.onrender.com/forum/'
     let username = "";
     let titlefail = false;
     let textfail = false;
@@ -41,7 +41,7 @@
         let res;
         if(id != null){
             res = await fetch(
-                'http://localhost:8080/forum/editPost',
+                'https://hbv501g-backend.onrender.com/forum/editPost',
                 {
                     method: 'PATCH',
                     headers: {"Content-Type": "application/json",
@@ -82,10 +82,10 @@
             return false;
         }
         if(ppid=="0"){
-            backendRoute = "http://localhost:8080/forum/newPost";
+            backendRoute = "https://hbv501g-backend.onrender.com/forum/newPost";
             return true;
         }else{
-            backendRoute = "http://localhost:8080/forum/replyPost?ppid="+ppid;
+            backendRoute = "https://hbv501g-backend.onrender.com/forum/replyPost?ppid="+ppid;
             return true;
         }
     }

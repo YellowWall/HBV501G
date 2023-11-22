@@ -3,7 +3,7 @@
 <script>
     import {goto,} from '$app/navigation';
     //import {browser} from '$app/enviroment'; þarf kanski ekki
-    let backendRoute = 'http://localhost:8080/user';
+    let backendRoute = 'https://hbv501g-backend.onrender.com';
     let password = '';
     let username = '';
     let failed = false;

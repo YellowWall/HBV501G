@@ -3,7 +3,7 @@
     import {browser} from '$app/environment';
     import {goto} from '$app/navigation';
     import { Table, TableBody, TableBodyCell, TableBodyRow, TableHead, TableHeadCell } from 'flowbite-svelte';
-    let backendRoute = 'http://localhost:8080';
+    let backendRoute = 'https://hbv501g-backend.onrender.com';
     let selected =-1;
     let fields = [];
     let failed = false;

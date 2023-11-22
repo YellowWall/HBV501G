@@ -2,7 +2,7 @@
     import {browser} from '$app/environment';
 	import DisplayGame from '../../components/DisplayGame.svelte';
 
-    let backendRoute = 'http://localhost:8080/game/displaygames/all';
+    let backendRoute = 'https://hbv501g-backend.onrender.com/game/displaygames/all';
 
     async function fetchGames(){
     

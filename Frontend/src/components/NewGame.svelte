@@ -2,7 +2,7 @@
     import { createEventDispatcher, onMount } from 'svelte';
     import {browser} from '$app/environment';
     import { Table, TableBody, TableBodyCell, TableBodyRow, TableHead, TableHeadCell } from 'flowbite-svelte';
-    let backendRoute = 'http://localhost:8080';
+    let backendRoute = 'https://hbv501g-backend.onrender.com';
     let selected ='select field';
     let fields = [];
     let scores = [

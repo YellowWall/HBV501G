@@ -2,7 +2,7 @@
 <script>
         import {browser} from '$app/environment';
         import NewGameForm from '../../components/NewGameForm.svelte';
-        let backendRoute = 'http://localhost:8080';
+        let backendRoute = 'https://hbv501g-backend.onrender.com';
         let newgame =false;
         //console.log(Username);
         //console.log(window.sessionStorage.getItem("authenticatorTocen"));

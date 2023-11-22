@@ -20,7 +20,7 @@
         }
     }
     
-    let backendRoute = 'http://localhost:8080/';
+    let backendRoute = 'https://hbv501g-backend.onrender.com/';
     
     async function postHole(){
         const res = await fetch(
