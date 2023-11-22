@@ -4,7 +4,7 @@
     import {page} from '$app/stores';
     import {browser} from '$app/environment';
 	import PostHoleForm from "../../../components/PostHoleForm.svelte";
-    import TogglePatchHole from "../../../components/formutils/TogglePatchHole.svelte";
+    import TogglePatchHole from "../../../components/TogglePatchHole.svelte";
 	import Header from "../../../components/Header.svelte";
 	import { Button } from "flowbite-svelte";
 
