@@ -82,8 +82,8 @@ public class UserService {
         if(user == null){
             return null;
         }
-        user.setSalt("");
-        user.setPassword("");
+       // user.setSalt("");
+        //user.setPassword("");
         return user;
 
     }
